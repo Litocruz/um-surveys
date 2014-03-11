@@ -5,6 +5,8 @@ gem 'rails', '4.0.3'
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 gem 'bootstrap-sass', '2.3.2.0'
+gem "less-rails"
+gem 'therubyracer'
 gem 'bcrypt-ruby', '3.1.2'
 
 # Use sqlite3 as the database for Active Record
