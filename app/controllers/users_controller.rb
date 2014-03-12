@@ -50,12 +50,7 @@ class UsersController < ApplicationController
     end
 
   #before action
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Por favor inicie sesion."
-      end
-    end
+    
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)

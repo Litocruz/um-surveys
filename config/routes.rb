@@ -1,10 +1,19 @@
 UmSurveys::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  root  'users#index'
+  #root  'users#index'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',            via: 'get'
   match '/signout',  to: 'sessions#destroy',            via: 'delete'
+
+  resources :surveys do
+    get 'results', on: :member
+
+    resources :questions
+    resources :answer_groups, only: [:new, :create]
+  end
+
+  root  'surveys#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
