@@ -1,13 +1,17 @@
   class SurveysController < ApplicationController
     #before_filter :authenticate_administrator!, except: :index
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-    before_action :correct_user,   only: :destroy
+    #before_action :correct_user
     respond_to :html, :js
     respond_to :json, only: :results
 
     def index
-      @surveys = Survey.all
-      respond_with(@surveys)
+      @surveys = current_user.surveys.paginate(page: params[:page])
+      if current_user.admin?
+        @surveys = Survey.paginate(page: params[:page])
+      end
+      #@surveys = Survey.all
+      #respond_with(@surveys)
     end
 
     def new
@@ -37,15 +41,17 @@
     end
 
     private
-    def survey_params
-      if Rails::VERSION::MAJOR == 4
-        params.require(:survey).permit(:name)
-      else
-        params[:survey]
+      def survey_params
+        if Rails::VERSION::MAJOR == 4
+          params.require(:survey).permit(:name)
+        else
+          params[:survey]
+        end
       end
-    end
+=begin    
     def correct_user
       @survey = current_user.surveys.find_by(id: params[:id])
       redirect_to root_url if @survey.nil?
     end
+=end
   end

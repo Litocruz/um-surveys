@@ -1,13 +1,13 @@
 <tr id= "survey_<%= survey.id %>">
-  <td width="250">
-    <%# if can_administer? %>
-      <%= link_to survey.name, survey_path(survey) %>
+  <td width="100">
+    <%# if correct_user %>
+      <%= link_to survey.name, survey_questions_path(survey) %>
     <%# else %>
-      <%= survey.name %>
+      <%# survey.name %>
     <%# end %>
   </td>
   <td>
-    <ul class=" list-inline">
+    <ul class="list-inline">
       <li><%= link_to "Responder Encuesta", new_survey_answer_group_path(survey), class: "btn btn-success btn-small" %></li>
       <%# if can_administer? %>
         <li><%= link_to "Resultados", [:results, survey], class: "btn btn-primary btn-small" %></li>

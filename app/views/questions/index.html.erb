@@ -1,9 +1,10 @@
-<h2>
-  Questions
-  <%= link_to "New Question", new_survey_question_path(@survey) %>
-</h2>
-<hr/>
+<div class="page-header">
+  <h1 class="pull-left">Preguntas</h1>
 
+  <h2 class="pull-right">
+    <%= link_to "Nueva Pregunta", new_survey_question_path(@survey) %>
+</h2>
+</div>
 <table>
   <colgroup>
     <col>
@@ -11,7 +12,7 @@
   </colgroup>
   <thead>
     <tr>
-      <th>Question</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>

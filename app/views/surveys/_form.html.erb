@@ -1,5 +1,9 @@
-<h3><%= survey.new_record? ? "New Group" : "Edit Group" %></h3>
+<% provide(:title, survey.new_record? ? "Nueva Encuesta" : "Editar Encuesta") %>
 
+<div class="page-header">
+  <h1 class="pull-left"><%= survey.new_record? ? "Nueva Encuesta" : "Editar Encuesta" %></h1>
+</div>
+<br />
 <%= form_for survey do |f| %>
   <%- if survey.errors.any? %>
     <ul>
@@ -9,7 +13,9 @@
     </ul>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+  <%= f.label "Nombre" %>
+  <%= f.text_field :name %><br />
+  <%= f.submit "Guardar", class: "btn btn-primary" %>
+
+
 <% end %>

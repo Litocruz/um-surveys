@@ -1,19 +1,24 @@
-<h2>
-  Question Groups
+
+<div class="page-header">
+  <h1 class="pull-left">Encuestas</h1>
+
+  <h2 class="pull-right">
   <%# if can_administer? %>
-    <%= link_to "New Group", new_survey_path %>
+    <%= link_to "Nueva Encuesta", new_survey_path %>
   <%# end %>
 </h2>
-<hr/>
+</div>
+
+
 
 <table>
   <colgroup>
     <col>
-    <col width="250">
+    <col width="350">
   </colgroup>
   <thead>
     <tr>
-      <th>Question Group</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>

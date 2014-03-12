@@ -1,9 +1,9 @@
 <tr id="question_<%= question.id %>">
-  <td><%= question.question_text %></td>
+  <td width="250"><%= question.question_text %></td>
   <td>
-    <ul class="horizontal-list">
-      <li><%= link_to "Edit", [:edit, question.survey, question] %></li>
-      <li><%= link_to "Delete", [question.survey, question], method: :delete %></li>
+    <ul class="list-inline">
+      <li><%= link_to "Editar", [:edit, question.survey, question], class: "btn btn-primary btn-mini" %></li>
+      <li><%= link_to "Eliminar", [question.survey, question], method: :delete, class: "btn btn-danger btn-mini", :confirm => '¿Esta seguro?' %></li>
     </ul>
   </td>
 </tr>
