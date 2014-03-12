@@ -1,0 +1,6 @@
+<% provide(:title, 'Editar') %>
+<h1>Actualizar Perfil</h1>
+    <%= form_for(@user) do |f| %>
+      <%= render 'fields', f: f %>
+      <br /><br /><%= f.submit "Guardar cambios", class: "btn btn-large btn-primary" %>
+    <% end %>
