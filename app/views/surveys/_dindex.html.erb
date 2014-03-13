@@ -1,0 +1,29 @@
+
+
+<div class="page-header">
+ <h1 class="pull-left">Encuestas</h1> 
+
+  <h2 class="pull-right">
+  <%# if can_administer? %>
+    <%= link_to "Nueva Encuesta", new_survey_path %>
+  <%# end %>
+</h2>
+</div>
+<br />
+
+
+<table>
+  <colgroup>
+    <col>
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "survey", collection: @surveys %>
+  </tbody>
+</table>

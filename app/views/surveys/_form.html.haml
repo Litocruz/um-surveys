@@ -1,0 +1,12 @@
+%h1 
+	= survey.new_record? ? "Nueva Encuesta" : "Editar Encuesta"
+= simple_form_for @survey, :html => { :class => 'form-horizontal' } do |f|
+	%ul	
+		= if survey.errors.any?
+			= survey.errors.full_messages.each do |message|
+				%li = message
+	= f.input :name
+	.form-actions
+		= f.button :submit, :class => 'btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'
+

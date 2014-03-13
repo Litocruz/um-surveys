@@ -1,0 +1,21 @@
+<% provide(:title, survey.new_record? ? "Nueva Encuesta" : "Editar Encuesta") %>
+
+<div class="page-header">
+  <h1 class="pull-left"><%= survey.new_record? ? "Nueva Encuesta" : "Editar Encuesta" %></h1>
+</div>
+<br />
+<%= form_for survey do |f| %>
+  <%- if survey.errors.any? %>
+    <ul>
+      <%- survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label "Nombre" %>
+  <%= f.text_field :name %><br />
+  <%= f.submit "Guardar", class: "btn btn-primary" %>
+
+
+<% end %>
