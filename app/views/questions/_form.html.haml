@@ -1,0 +1,18 @@
+= simple_form_for [@survey, @question], :html => { :class => 'form-horizontal' } do |f|
+	%ul	
+	= if question.errors.any?
+		= question.errors.full_messages.each do |message|
+			%li = message
+	%span Tipo
+	= f.select :type, ::QuestionForm::QUESTION_TYPES, {}, id: "question_type"
+	= f.input :question_text, label: "Pregunta"
+	= f.input :answer_options, as: :text, label: "Opciones de Respuesta", wrapper_html: { :rows => '9' }
+	= f.hint 'Escriba las opciones separadas por ENTER'
+	
+	%hr
+	%h4 Otras Opciones
+	= f.input :answer_presence,   as: :boolean ,label: "¿Es obligatoria?"
+	.form-actions
+		= f.button :submit, "Crear", :class => 'btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancelar")), survey_questions_path, :class => 'btn'
+	

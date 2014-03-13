@@ -1,0 +1,11 @@
+-i=0
+- @questions.each do |question|
+  
+  %tr
+    %td= i += 1 
+    %td= question.type.split('::')[1]
+    %td= question.question_text 
+    %td=l question.created_at
+    %td
+      = link_to t('.edit', :default => t("helpers.links.edit")), [:edit, question.survey, question], :class => 'btn btn-mini'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), [question.survey, question], :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
