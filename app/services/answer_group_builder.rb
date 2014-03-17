@@ -13,7 +13,7 @@ class AnswerGroupBuilder < BaseService
     def save!(options = {})
       params.each do |question_id, answer_attributes|
         if answer = @answer_group.answers.find { |a| a.question_id.to_s == question_id.to_s }
-          text = answer_attributes[:answer_text]
+          text = answer_attributes[:answer_text] +
           answer.answer_text =
             text.is_a?(Array) ? strip_checkbox_answers(text).join(',') : text
         end

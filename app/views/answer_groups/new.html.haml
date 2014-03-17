@@ -1,0 +1,13 @@
+- model_class = AnswerGroup
+- provide(:title, "Encuesta")
+.page-header
+	%h2
+		= @survey.name
+= simple_form_for([@survey, @answer_group_builder], :html => { :class => 'form-horizontal' }) do |f|
+	- @answer_group_builder.answers.each do |answer|
+		= f.simple_fields_for("#{answer.question.id}", answer) do |answer_form|
+			.well
+				= render_answer_form_helper(answer, answer_form)
+	.form-actions
+		= f.button :submit, "Crear", :class => 'btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'

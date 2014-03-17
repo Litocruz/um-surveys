@@ -1,7 +1,6 @@
 - results.each do |result|
   %div
     %h4
-      Question:
       = result.question.question_text
     %p
       - if result.results.is_a?(Array)
@@ -12,8 +11,8 @@
         %table.table.table-striped.table-bordered
           %thead
             %tr
-              %th Option
-              %th Count
+              %th Opciones
+              %th Cantidad
           %tbody
             - result.results.each do |option, count|
               %tr

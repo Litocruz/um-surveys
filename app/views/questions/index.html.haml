@@ -12,4 +12,5 @@
   %tbody
     = render partial: "question"
 
-= link_to t('.new', :default => t("helpers.links.new")), new_survey_question_path, :class => 'btn btn-primary'
+= link_to t('.new', :default => t("helpers.links.new")), new_survey_question_path, :class => 'btn btn-primary btn-large'
+= link_to t('.cancel', :default => t("helpers.links.cancelar")), surveys_path, :class => 'btn'

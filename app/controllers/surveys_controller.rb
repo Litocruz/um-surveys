@@ -21,15 +21,17 @@
 
     def create
       @survey = current_user.surveys.build(survey_params)
-      @survey.save
-
+      if @survey.save
+        flash[:success] = "Encuesta creada"
+      end
       respond_with(@survey, location: surveys_url)
     end
 
     def destroy
       @survey = Survey.find(params[:id])
-      @survey.destroy
-
+      if @survey.destroy
+        flash[:success] = "Encuesta Eliminada"
+      end
       respond_with(@survey)
     end
 

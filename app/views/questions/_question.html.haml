@@ -3,8 +3,8 @@
   
   %tr
     %td= i += 1 
-    %td= question.type.split('::')[1]
-    %td= question.question_text 
+    %td= question.type.split('::').last
+    %td= link_to truncate(question.question_text, length: 65), [:edit, question.survey, question]	
     %td=l question.created_at
     %td
       = link_to t('.edit', :default => t("helpers.links.edit")), [:edit, question.survey, question], :class => 'btn btn-mini'

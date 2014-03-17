@@ -18,9 +18,13 @@
     def create
       form_params = params[:question].merge(:survey => @survey)
       @question = QuestionForm.new(form_params)
-      @question.save
-
-      respond_with(@question, location: index_location)
+      #Rails.logger.debug 'DEBUG: question.save ' + @question.save
+      if @question.save
+        respond_with(@question, location: index_location)
+        flash[:success] = "Pregunta Creada"
+      else
+        respond_with(@question, location: index_location)
+      end
     end
 
     def edit
@@ -31,13 +35,16 @@
     def update
       form_params = params[:question].merge(:question => @question)
       @question = QuestionForm.new(form_params)
-      @question.save
-
+      if @question.save
+        flash[:success] = "Pregunta Actualizada"
+      end
       respond_with(@question, location: index_location)
     end
 
     def destroy
-      @question.destroy
+      if @question.destroy
+        flash[:success] = "Pregunta eliminada"
+      end
       respond_with(@question, location: index_location)
     end
 

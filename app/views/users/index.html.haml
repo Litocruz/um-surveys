@@ -1,0 +1,16 @@
+- provide(:title, 'Usuarios') 
+- model_class = User
+%h1 Todos los usuarios
+= will_paginate
+= #@users is a list of User objects; moreover, when called with a collection of users, Rails automatically iterates through them and renders each one
+%table.table.table-hover
+	%thead
+		%tr
+			%th= model_class.human_attribute_name(:id)
+			%th= model_class.human_attribute_name(:name)
+			%th= model_class.human_attribute_name(:admin)
+			%th= model_class.human_attribute_name(:created_at)
+			%th=t '.actions', :default => t("helpers.actions")
+	%tbody
+		= render @users 
+= will_paginate

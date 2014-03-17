@@ -1,6 +1,7 @@
 <% provide(:title, 'Editar') %>
 <h1>Actualizar Perfil</h1>
-    <%= form_for(@user) do |f| %>
+    <%= simple_form_for(@user) do |f| %>
       <%= render 'fields', f: f %>
       <br /><br /><%= f.submit "Guardar cambios", class: "btn btn-large btn-primary" %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancelar")), users_path, :class => 'btn' %>
     <% end %>

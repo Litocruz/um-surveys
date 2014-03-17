@@ -1,0 +1,15 @@
+<% provide(:title, "Encuesta") %>
+
+<div class="page-header">
+  <h1 class="pull-left">Por favor reponda el cuestionario</h1>
+</div>
+<br />
+
+<%= form_for([@survey, @answer_group_builder]) do |f| %>
+  <%- @answer_group_builder.answers.each do |answer| %>
+    <%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+      <%= render_answer_form_helper(answer, answer_form) %>
+    <% end %>
+  <% end %><br />	
+  <%= f.submit "Guardar", class: "btn btn-primary" %>
+<% end %>
