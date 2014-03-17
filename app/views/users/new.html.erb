@@ -1,6 +1,0 @@
-<% provide(:title, 'Registrar') %>
-<h1>Registrar</h1>
-    <%= form_for(@user) do |f| %>
-      <%= render 'fields', f: f %>
-      <br /><br /><%= f.submit "Crear cuenta", class: "btn btn-large btn-primary" %>
-    <% end %>
