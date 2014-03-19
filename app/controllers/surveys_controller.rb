@@ -11,7 +11,7 @@
         @surveys = Survey.paginate(page: params[:page])
       end
       #@surveys = Survey.all
-      #respond_with(@surveys)
+      respond_with(@surveys)
     end
 
     def new
