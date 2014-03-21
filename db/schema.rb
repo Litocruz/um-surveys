@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312154329) do
+ActiveRecord::Schema.define(version: 20140320211849) do
 
   create_table "answer_groups", force: true do |t|
     t.integer  "survey_id"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20140312154329) do
   add_index "answers", ["answer_group_id"], name: "index_answers_on_answer_group_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
+  create_table "participants", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "survey_id"
+    t.boolean  "status",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.integer  "survey_id"
     t.string   "type"
@@ -53,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140312154329) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "scope",      default: 0
   end
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id"

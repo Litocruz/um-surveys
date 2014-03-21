@@ -27,6 +27,20 @@
       respond_with(@survey, location: surveys_url)
     end
 
+    def edit
+      @survey = Survey.find(params[:id])
+    end
+
+    def update
+      @survey = Survey.find(params[:id])
+      if @survey.update_attributes(survey_params)
+        flash[:success] = "Encuesta actualizada"
+        respond_with(@survey, location: index_location)
+      else
+        render 'edit'
+      end
+    end
+
     def destroy
       @survey = Survey.find(params[:id])
       if @survey.destroy
@@ -45,15 +59,12 @@
     private
       def survey_params
         if Rails::VERSION::MAJOR == 4
-          params.require(:survey).permit(:name)
+          params.require(:survey).permit(:name, :scope)
         else
           params[:survey]
         end
       end
-=begin    
-    def correct_user
-      @survey = current_user.surveys.find_by(id: params[:id])
-      redirect_to root_url if @survey.nil?
-    end
-=end
+      def index_location
+        surveys_url
+      end
   end

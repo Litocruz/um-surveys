@@ -224,6 +224,7 @@ es:
         user_id: 'id de usuario'
         created_at: 'fecha creación'
         user_id: 'id de usuario'
+        scope: 'ambito'
       question:
         survey_id: 'id de encuesta'
         type: 'tipo'

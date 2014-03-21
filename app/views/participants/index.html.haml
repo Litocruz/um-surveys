@@ -1,0 +1,28 @@
+%h1 
+	Participantes de la encuesta 
+	%small= @survey.name 
+
+- flash[:notice]
+%table.table.table-hover
+	%thead
+		%tr
+			%th Id
+			%th Name
+			%th Mail
+			%th Voto?
+		%tr
+	%thead
+	%tbody
+		- @participants.each do |participant|
+			%tr
+				%td= participant.id
+				%td= participant.name
+				%td= participant.email
+				%td= participant.status
+%div
+	%h4 Asignar Participantes (Archivo .CSV)
+	= form_tag import_survey_participants_path, :html => { :class => 'form-horizontal' }, multipart: true do
+		= file_field_tag :file
+		.form-actions
+			= submit_tag "Importar CSV", :class => 'btn btn-primary'
+			= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'

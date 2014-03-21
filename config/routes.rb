@@ -1,4 +1,6 @@
 UmSurveys::Application.routes.draw do
+  get "participants/index"
+  get "participants/import"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   #root  'users#index'
@@ -11,7 +13,12 @@ UmSurveys::Application.routes.draw do
 
     resources :questions
     resources :answer_groups, only: [:new, :create]
+    resources :participants do
+      collection { post :import }
+    end
   end
+
+ 
 
   root  'surveys#index'
   # The priority is based upon order of creation: first created -> highest priority.

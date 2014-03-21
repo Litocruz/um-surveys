@@ -1,5 +1,6 @@
 = simple_form_for @survey, :html => { :class => 'form-horizontal' } do |f|
 	= f.input :name
+	= f.input :scope, collection: {publico: 0, privado: 1}, include_blank: false
 	.form-actions
 		= f.button :submit, :class => 'btn-primary btn-large'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'

@@ -49,15 +49,15 @@
     end
 
     private
-    def find_survey!
-      @survey = Survey.find(params[:survey_id])
-    end
+      def find_survey!
+        @survey = Survey.find(params[:survey_id])
+      end
 
-    def find_question!
-      @question = @survey.questions.find(params[:id])
-    end
+      def find_question!
+        @question = @survey.questions.find(params[:id])
+      end
 
-    def index_location
-      survey_questions_url(@survey)
-    end
+      def index_location
+        survey_questions_url(@survey)
+      end
   end
