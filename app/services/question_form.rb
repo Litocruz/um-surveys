@@ -3,11 +3,11 @@
       [
        Questions::Checkbox,
        Questions::Date,
-       Questions::Long,
+       #Questions::Long,
        Questions::Numeric,
        Questions::Radio,
        Questions::Select,
-       Questions::Short,
+       #Questions::Short,
       ]
 
     QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|

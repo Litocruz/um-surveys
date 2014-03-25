@@ -12,7 +12,6 @@ class ParticipantsController < ApplicationController
 			participant_hash.each{ |part|
 				participant = Participant.where(email: part["email"], survey_id: @survey.id)
 	      if participant.count == 1
-
 	        Rails.logger.debug "ControllerP Encontro coincidencia parth: #{part.inspect}"
 	        participant.first.update_attributes(part)
 	        #participant.first.update_attributes(participant_hash.except("id"))
