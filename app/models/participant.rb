@@ -1,5 +1,6 @@
 class Participant < ActiveRecord::Base
-	belongs_to :survey
+	belongs_to :survey  
+  before_create { generate_token(:url_token) }
 	require 'csv'
  
   def self.import(file)
@@ -24,4 +25,16 @@ class Participant < ActiveRecord::Base
     Rails.logger.debug "Person attributes hash: #{participants.inspect}"
     participants
   end # end self.import(file)
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while Participant.exists?(column => self[column])
+  end
+
+  def send_survey_email
+    generate_token(:url_token)
+    save!
+    ParticipantMailer.survey_sent(self).deliver
+  end
 end

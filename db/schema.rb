@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320211849) do
+ActiveRecord::Schema.define(version: 20140325222016) do
 
   create_table "answer_groups", force: true do |t|
     t.integer  "survey_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140320211849) do
     t.boolean  "status",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url_token"
   end
 
   create_table "questions", force: true do |t|

@@ -18,6 +18,7 @@ class ParticipantsController < ApplicationController
 	      else
 	      	Rails.logger.debug "ControllerP No Encontro coincidencia part: #{part.inspect}"
 	        status = @survey.participants.create!(part)
+          #update_attributes!(:url => Base64::encode64(id.to_s))
 	        Rails.logger.debug "ControllerP status: #{status.inspect}"
 	      end # end if !participant.nil?
 			}
@@ -27,12 +28,21 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def send_mails
+    participants = Participant.find_all_by_survey_id(params[:survey_id])
+    Rails.logger.debug "send_mails Participants : #{participants.inspect}"
+    participants.each{ |participant|
+      participant.send_survey_email if participant
+    }
+    redirect_to survey_participants_url, :notice => "Encuestas enviadas por mail."
+  end
+
 
   private
     def find_survey!
       @survey = Survey.find(params[:survey_id])
     end
     def participant_params
-     params.require(:participant).permit(:participant_hash).merge(:survey => @survey)
+      params.require(:participant).permit(:participant_hash).merge(:survey => @survey)
     end
 end

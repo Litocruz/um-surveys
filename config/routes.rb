@@ -1,12 +1,13 @@
 UmSurveys::Application.routes.draw do
   get "participants/index"
   get "participants/import"
+  #post "participants/send_mails"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   #root  'users#index'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',            via: 'get'
-  match '/signout',  to: 'sessions#destroy',            via: 'delete'
+  match '/signup',  to: 'users#new',         via: 'get'
+  match '/signin',  to: 'sessions#new',      via: 'get'
+  match '/signout',  to: 'sessions#destroy', via: 'delete'
 
   resources :surveys do
     get 'results', on: :member
@@ -15,11 +16,11 @@ UmSurveys::Application.routes.draw do
     resources :answer_groups, only: [:new, :create]
     resources :participants do
       collection { post :import }
+      collection { post :send_mails }
     end
   end
 
- 
-
+  get "/surveys/:survey_id/answer_groups/new" => "answer_group#new", :as => :survey_answer_participant
   root  'surveys#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

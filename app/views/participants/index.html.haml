@@ -3,26 +3,33 @@
 	%small= @survey.name 
 
 - flash[:notice]
-%table.table.table-hover
-	%thead
-		%tr
-			%th Id
-			%th Name
-			%th Mail
-			%th Voto?
-		%tr
-	%thead
-	%tbody
-		- @participants.each do |participant|
+
+= form_tag send_mails_survey_participants_path, :html => { :class => 'form-horizontal' } do
+	
+	%table.table.table-hover
+		%thead
 			%tr
-				%td= participant.id
-				%td= participant.name
-				%td= participant.email
-				%td= participant.status
-%div
+				%th Id
+				%th Name
+				%th Mail
+				%th Url
+				%th Voto?
+			%tr
+		%thead
+		%tbody
+			- @participants.each do |participant|
+				%tr
+					%td= participant.id
+					%td= participant.name
+					%td= participant.email
+					%td= link_to survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token), survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token)
+					%td= participant.status
+	%div.actions
+		= submit_tag "Enviar Emails", :class => 'btn btn-primary btn-large'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'
+%div.well
 	%h4 Asignar Participantes (Archivo .CSV)
 	= form_tag import_survey_participants_path, :html => { :class => 'form-horizontal' }, multipart: true do
 		= file_field_tag :file
 		.form-actions
 			= submit_tag "Importar CSV", :class => 'btn btn-primary'
-			= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'
