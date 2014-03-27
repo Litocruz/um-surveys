@@ -1,0 +1,13 @@
+<% provide(:title, 'Inicio') %>
+  <div class="center hero-unit center">
+    <h1>Inicio</h1>
+    <h2>
+      UM
+      <a href="#">Software de Gestion de Encuestas</a>
+      2014.
+    </h2>
+
+    <% if !signed_in? %>
+      <%= link_to "Ingresar", signin_path, class: "btn btn-large btn-primary" %>
+    <% end %>  
+  </div>

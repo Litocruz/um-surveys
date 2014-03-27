@@ -11,4 +11,6 @@
 				= render_answer_form_helper(answer, answer_form)
 	.form-actions
 		= f.button :submit, "Crear", :class => 'btn-primary btn-large'
+		= f.hidden_field "url_token", value: params[:url_token]
 		= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'
+

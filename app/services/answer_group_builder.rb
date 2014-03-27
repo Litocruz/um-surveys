@@ -1,6 +1,6 @@
 
 class AnswerGroupBuilder < BaseService
-  attr_accessor :user, :survey, :questions, :answers, :params
+  attr_accessor :user, :survey, :questions, :answers, :participant, :params
 
   def initialize(params = {})
     super(params)

@@ -21,7 +21,8 @@ UmSurveys::Application.routes.draw do
   end
 
   get "/surveys/:survey_id/answer_groups/new" => "answer_group#new", :as => :survey_answer_participant
-  root  'surveys#index'
+  #root  'surveys#index'
+  root to: 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

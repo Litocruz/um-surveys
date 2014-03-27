@@ -1,0 +1,6 @@
+%h1 
+	Encuestas Universidad de Mendoza
+	%small
+		2014
+%p por favor conteste la encuesta con seriedad. Muchas Gracias.
+=link_to "link-encuesta", survey_answer_participant_url(:survey_id => @participant.survey_id, :url_token => @participant.url_token)

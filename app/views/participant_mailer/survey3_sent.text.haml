@@ -1,0 +1,7 @@
+%h1 
+	Conteste La encuesta
+	%small
+		Gracias
+
+%h3
+	=link_to survey_answer_participant_url(:survey_id => @participant.survey_id, :url_token => @participant.url_token), survey_answer_participant_url(:survey_id => @participant.survey_id, :url_token => @participant.url_token)
