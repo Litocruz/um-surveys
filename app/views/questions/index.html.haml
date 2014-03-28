@@ -1,12 +1,15 @@
 - model_class = Question
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-%table.table.table-hover
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort]
+= will_paginate @questions
+%table.table.table-hover.sortable
   %thead
     %tr
       %th= model_class.human_attribute_name(:posicion)
       %th= model_class.human_attribute_name(:tipo)
-      %th= model_class.human_attribute_name(:pregunta)
+      %th= sortable model_class.human_attribute_name(:pregunta)
       %th= model_class.human_attribute_name(:creado)
       %th=t '.actions', :default => t("helpers.actiones")
   %tbody

@@ -4,9 +4,10 @@
       = result.question.question_text
     %p
       - if result.results.is_a?(Array)
-        %ol
-          - result.results.each do |answer|
-            %li= answer
+        %div.well
+          %ol
+            - result.results.each do |answer|
+              %li= answer
       - elsif result.results.is_a?(Hash)
         %table.table.table-striped.table-bordered
           %thead

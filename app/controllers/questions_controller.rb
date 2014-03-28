@@ -4,9 +4,10 @@
 
     before_filter :find_survey!
     before_filter :find_question!, :only => [:edit, :update, :destroy]
+    helper_method :sort_column, :sort_direction
 
     def index
-      @questions = @survey.questions
+      @questions = @survey.questions.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 15) 
       respond_with(@questions)
     end
 
@@ -59,5 +60,13 @@
 
       def index_location
         survey_questions_url(@survey)
+      end
+
+      def sort_column
+        Question.column_names.include?(params[:sort]) ? params[:sort] : "question_text"   
+      end  
+     
+      def sort_direction
+        %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"    
       end
   end

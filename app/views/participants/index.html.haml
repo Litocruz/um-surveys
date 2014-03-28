@@ -23,7 +23,7 @@
 					%td= participant.name
 					%td= participant.email
 					%td= link_to survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token), survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token)
-					%td= participant.status
+					%td= human_boolean(participant.status)
 	%div.actions
 		= submit_tag "Enviar Emails", :class => 'btn btn-primary btn-large'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'

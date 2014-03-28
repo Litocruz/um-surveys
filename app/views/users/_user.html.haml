@@ -4,9 +4,9 @@
 	%tr
 		%td= user.id
 		%td= link_to user.name, user
-		%td= user.admin
+		%td= human_boolean(user.admin)
 		%td= user.created_at
 		%td
 			= if current_user.admin? && !current_user?(user)
 				= link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(user), :class => 'btn btn-mini'	
-				- link_to "delete", user, method: :delete, class: "btn btn-small btn-danger", data: { confirm: "Esta seguro?" }
+				- link_to t('.delete', :default => t("helpers.links.delete")), user, method: :delete, class: "btn btn-mini btn-danger", data: { confirm: "Esta seguro?" }

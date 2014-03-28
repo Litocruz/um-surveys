@@ -1,13 +1,13 @@
 %div.page-header
-  %h1.pull-left Resultados
-  %br
-  %br
+	%h1 
+		Resultados
+		%small=@survey.name
 %ul.nav.nav-tabs
-  %li.active= link_to "Resultados con JSON", "#json-results", "data-toggle" => "tab"
-  %li= link_to "Resultados HTML", "#html-results", "data-toggle" => "tab"
+	%li.active= link_to "Resultados con JSON", "#json-results", "data-toggle" => "tab"
+	%li= link_to "Resultados HTML", "#html-results", "data-toggle" => "tab"
 
 .tab-content
-  .tab-pane.active#json-results
-    = render partial: "json_results", locals: { survey: @survey }
-  .tab-pane#html-results
-    = render partial: "html_results", locals: { results: @survey_results }
+	.tab-pane.active#json-results
+		= render partial: "json_results", locals: { survey: @survey }
+	.tab-pane#html-results
+		= render partial: "html_results", locals: { results: @survey_results }

@@ -12,6 +12,7 @@ class @ResultChart
   appendNonAggregatableResults: (resultObj)->
     $resultsHtml = $ JST["templates/non_aggregatable"](resultObj: resultObj)
     $resultsHtml.appendTo @container
+    resultObj.map
 
   appendAggregatableResults: (resultObj)->
     colors = ["#F33E6F", "#2D91EA", "#F7464A", "#69D2E7", "#4D5360", "#F38630", "black"]

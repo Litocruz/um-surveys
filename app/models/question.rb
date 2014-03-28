@@ -39,4 +39,12 @@ class Question < ActiveRecord::Base
         answer.validates_length_of :answer_text, min_max
       end
     end
+
+    def self.search(search)
+      if search
+        where('name LIKE ?', "%#{search}%")
+      else
+        scoped
+      end
+    end 
 end
