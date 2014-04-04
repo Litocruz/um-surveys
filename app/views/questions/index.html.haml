@@ -4,16 +4,16 @@
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 = will_paginate @questions
-%table.table.table-hover.sortable
+%table.tablesorter#questionTable
   %thead
     %tr
-      %th= model_class.human_attribute_name(:posicion)
-      %th= model_class.human_attribute_name(:tipo)
-      %th= sortable model_class.human_attribute_name(:pregunta)
-      %th= model_class.human_attribute_name(:creado)
+      %th= model_class.human_attribute_name(:position)
+      %th= model_class.human_attribute_name(:type)
+      %th= model_class.human_attribute_name(:question_text)
+      %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actiones")
   %tbody
     = render partial: "question"
-
+= will_paginate @questions
 = link_to t('.new', :default => t("helpers.links.new")), new_survey_question_path, :class => 'btn btn-primary btn-large'
 = link_to t('.cancel', :default => t("helpers.links.cancelar")), surveys_path, :class => 'btn'

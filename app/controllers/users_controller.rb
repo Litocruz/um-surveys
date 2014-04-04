@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
+  respond_to :html, :js
 
   def index
     @users = User.paginate(page: params[:page])
+    respond_with(@users)
   end
 
   def new

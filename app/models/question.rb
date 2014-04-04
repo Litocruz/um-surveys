@@ -2,10 +2,9 @@ class Question < ActiveRecord::Base
 	 belongs_to :survey, :inverse_of => :questions
     has_many   :answers
 
-    default_scope { order(:position) }
-
     validates :survey, :question_text, :presence => true
     serialize :validation_rules
+    #default_scope {where(question_text: NOT_NULL)}
 
     if Rails::VERSION::MAJOR == 3
       attr_accessible :survey, :question_text, :validation_rules, :answer_options
@@ -42,9 +41,9 @@ class Question < ActiveRecord::Base
 
     def self.search(search)
       if search
-        where('name LIKE ?', "%#{search}%")
+        where('question_text LIKE ?', "%#{search}%")
       else
-        scoped
+        where('question_text LIKE ?', "%%")
       end
     end 
 end

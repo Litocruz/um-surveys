@@ -10,9 +10,14 @@
  *
  *= require_self
  *= require_tree .
+ *= require jquery-tablesorter/theme.bootstrap
  */
 .legend {
   width:  16px;
   height: 16px;
   margin: 2px 5px 0 0;
+}
+table.tablesorter thead tr.tablesorter-filter-row input.disabled { 
+   opacity: 0.0; 
+    filter: alpha(opacity=0); 
 }

@@ -10,7 +10,18 @@
       <div class="container-fluid nav-collapse">
         <ul class="nav">
           <% if signed_in? %>
-            <li class="active"><%= link_to "Encuestas", surveys_path  %></li>
+            <li><%= link_to "Encuestas", surveys_path  %></li>
+            <% if signed_in? && current_user.admin? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Usuarios <b class="caret"></b>
+                </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "Nuevo usuario", signup_path   %></li>
+                    <li><%= link_to "Listar Usuarios", users_path  %></li>
+                  </ul>
+              </li>
+            <% end %>
           <% end %>
         </ul>
         <ul class="nav pull-right">

@@ -6,9 +6,9 @@
     respond_to :json, only: :results
 
     def index
-      @surveys = current_user.surveys.paginate(page: params[:page])
+      @surveys = current_user.surveys.paginate(page: params[:page], per_page: 10)
       if current_user.admin?
-        @surveys = Survey.paginate(page: params[:page])
+        @surveys = Survey.paginate(page: params[:page], per_page: 10)
       end
       #@surveys = Survey.all
       respond_with(@surveys)

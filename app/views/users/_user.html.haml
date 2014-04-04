@@ -2,7 +2,6 @@
 	%tr.success
 - else
 	%tr
-		%td= user.id
 		%td= link_to user.name, user
 		%td= human_boolean(user.admin)
 		%td= user.created_at

@@ -1,4 +1,5 @@
 class ParticipantsController < ApplicationController
+  before_action :signed_in_user
 	before_filter :find_survey!
 
   def index
