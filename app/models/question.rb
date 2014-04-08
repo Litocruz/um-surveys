@@ -1,10 +1,18 @@
 class Question < ActiveRecord::Base
-	 belongs_to :survey, :inverse_of => :questions
+    
+      
+    belongs_to :survey, :inverse_of => :questions
     has_many   :answers
 
     validates :survey, :question_text, :presence => true
     serialize :validation_rules
-    #default_scope {where(question_text: NOT_NULL)}
+    include RankedModel
+    ranks :position,with_same: :survey_id,
+          class_name: "Question"       # Override the default column, which defaults to the name
+
+    #before_save { |question| question.position =  :position_position, :last  }
+    default_scope order: 'questions.position DESC'
+
 
     if Rails::VERSION::MAJOR == 3
       attr_accessible :survey, :question_text, :validation_rules, :answer_options
@@ -45,5 +53,5 @@ class Question < ActiveRecord::Base
       else
         where('question_text LIKE ?', "%%")
       end
-    end 
+    end
 end

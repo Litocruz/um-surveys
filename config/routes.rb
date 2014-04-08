@@ -12,13 +12,16 @@ UmSurveys::Application.routes.draw do
   resources :surveys do
     get 'results', on: :member
 
-    resources :questions
+    resources :questions do
+      collection {post :reorder}
+    end
     resources :answer_groups, only: [:new, :create]
     resources :participants do
       collection { post :import }
       collection { post :send_mails }
     end
   end
+
 
   get "/surveys/:survey_id/answer_groups/new" => "answer_group#new", :as => :survey_answer_participant
   #root  'surveys#index'

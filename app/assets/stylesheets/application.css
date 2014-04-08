@@ -21,3 +21,7 @@ table.tablesorter thead tr.tablesorter-filter-row input.disabled {
    opacity: 0.0; 
     filter: alpha(opacity=0); 
 }
+.handle:hover{cursor: move;}
+#questionTable tr {
+    cursor: move;
+}

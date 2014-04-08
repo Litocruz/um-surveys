@@ -13,6 +13,9 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'ejs'
 gem 'haml-rails'
 gem 'jquery-tablesorter'
+gem 'jquery-sortable-rails'
+gem 'jquery-ui-rails'
+gem 'ranked-model'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

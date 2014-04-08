@@ -16,8 +16,11 @@
 //= require twitter/bootstrap
 //= require chart
 //= require_tree ./templates
+//= require_tree
 //= require result-chart
 //= require jquery-tablesorter
+//= require jquery.sortable
+//= require jquery.ui.all
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
@@ -61,8 +64,46 @@ $(function(){
     });
 });
 
+/*$(function() {
+    $("#questionTable").sortable({
+      update: function(event, ui){
+        id = ui.item.data('id')
+        position = ui.item.index()
+        var itm_arr = $("#questionTable").sortable('toArray');
+        var pobj = {questions: itm_arr};
+        $.post("questions/reorder", pobj);
+        console.log(pobj);
+      }
+    });
+});*/
 
- 
+// Sorting the list
+
+/*$(document).ready(function(){
+$('#questionTable').sortable({
+axis: 'y',
+dropOnEmpty: false,
+handle: '.handle',
+cursor: 'crosshair',
+items: 'table',
+opacity: 0.4,
+scroll: true,
+update: function(){
+$.ajax({
+type: 'post',
+data: $('#questionTable').sortable('serialize'),
+dataType: 'script',
+complete: function(request){
+$('#questionTable').effect('highlight');
+},
+url: '/questions/reorder'})
+}
+});
+});*/
+
+
+
+
 $(function() {
 
   $.tablesorter.defaults.widthFixed = true,

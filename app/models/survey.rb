@@ -1,5 +1,5 @@
 class Survey < ActiveRecord::Base
-	has_many  :questions
+	has_many  :questions, dependent: :destroy
 	belongs_to :user
   validates :name, :presence => true
   has_many :participants, dependent: :destroy

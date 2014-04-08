@@ -5,9 +5,10 @@
 
     before_filter :find_survey!
     before_filter :find_question!, :only => [:edit, :update, :destroy]
+    
 
     def index
-      @questions = @survey.questions.paginate(:page => params[:page], :per_page => 10) 
+      @questions = @survey.questions.rank(:position).paginate(:page => params[:page], :per_page => 10) 
       respond_with(@questions)
     end
 
@@ -19,6 +20,7 @@
     def create
       form_params = params[:question].merge(:survey => @survey)
       @question = QuestionForm.new(form_params)
+      
       #Rails.logger.debug 'DEBUG: question.save ' + @question.save
       if @question.save
         respond_with(@question, location: index_location)
@@ -48,8 +50,28 @@
       end
       respond_with(@question, location: index_location)
     end
+  
+    def reorder
+      @question = @survey.questions.find(params[:id])
+      #if question
+        @question.attributes = question_params
+        @question.save
+      #end
+
+      # .attributes is a useful shorthand for mass-assigning
+      # values via a hash
+      #@question.attributes = question_params
+      #Rails.logger.debug "@question.save.inspect: #{@question.save}"
+      #@question.save
+
+      # this action will be called via ajax
+      render nothing: true
+    end
 
     private
+      def question_params
+       params.require(:question).permit(:question, :position_position, :position)
+      end
       def find_survey!
         @survey = Survey.find(params[:survey_id])
       end
