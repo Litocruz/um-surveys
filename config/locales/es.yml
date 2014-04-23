@@ -248,4 +248,7 @@ es:
         user_id: 'id de usuario'
         user_type: 'tipo de usuario'
         created_at: 'fecha creación'
-
+  will_paginate:
+    previous_label: "Anteior"
+    next_label: "Siguiente"
+    page_gap: "…"
