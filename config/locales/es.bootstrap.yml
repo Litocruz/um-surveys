@@ -11,8 +11,10 @@ es:
       destroy: "Eliminar"
       new: "Nuevo"
       edit: "Editar"
+      back: "Volver"
+      answer: "Responder"
     titles:
       edit: "Editar %{model}"
       save: "Guardar %{model}"
-      new: "Nuevo %{model}"
+      new: "Nueva %{model}"
       delete: "Eliminar %{model}"

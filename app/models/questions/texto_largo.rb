@@ -1,4 +1,4 @@
   module Questions
-    class Radio < Select
+    class TextoLargo < Question
     end
   end

@@ -1,14 +1,28 @@
 = simple_form_for [@survey, @question], :html => { :class => 'form-horizontal' } do |f|
-	%span
-	= f.input :type, collection: ::QuestionForm::QUESTION_TYPES, id: "question_type", label: "tipo"
-	= f.input :question_text, label: "Pregunta"
-	= f.input :answer_options, as: :text, label: "Opciones de Respuesta", input_html: { :rows => '6' }
-	= f.hint 'Escriba las opciones separadas por ENTER'
-	
-	%hr
-	%h4 Otras Opciones
-	= f.input :answer_presence,   as: :boolean ,label: "¿Es obligatoria?"
+	.row-fluid
+		.span7
+			= f.input :type, collection: ::QuestionForm::QUESTION_TYPES, id: "question_type", label: "tipo"
+			= f.input :question_text, label: "Pregunta"
+			= f.input :answer_options, as: :text, label: "Opciones de Respuesta", input_html: { :rows => '6' }
+			= f.hint 'Escriba las opciones separadas por ENTER'
+			= f.hint 'Si no hay opciones deje el cuadro en blanco'
+		.span5
+			%h4
+				%strong Otras Opciones
+			%hr
+			.well	
+				= f.input :answer_presence,   as: :boolean ,label: "¿Es obligatoria?"
+				.row-fluid
+					.span6
+						= f.input :answer_minimum_length, label: "Longitud minina"
+					.span6
+						= f.input :answer_maximum_length, label: "Longitud maxima"
+				.row-fluid
+					.span6
+						= f.input :answer_greater_than_or_equal_to, label: "Mayor o Igual a" 
+					.span6
+						= f.input :answer_less_than_or_equal_to , label: "Menor o Igual a"
 	.form-actions
-		= f.button :submit, "Crear", :class => 'btn-primary btn-large'
+		= f.button :submit,  :class => 'btn-primary btn-large'
 		= link_to t('.cancel', :default => t("helpers.links.cancelar")), survey_questions_path, :class => 'btn'
 	

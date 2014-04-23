@@ -16,4 +16,4 @@
     = render partial: "question"
 = will_paginate @questions
 = link_to t('.new', :default => t("helpers.links.new")), new_survey_question_path, :class => 'btn btn-primary btn-large'
-= link_to t('.cancel', :default => t("helpers.links.cancelar")), surveys_path, :class => 'btn'
+= link_to t('.back', :default => t("helpers.links.back")), surveys_path, :class => 'btn'

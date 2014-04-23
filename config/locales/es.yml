@@ -204,6 +204,9 @@ es:
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
+    models:
+      questions:
+        radio: 'Roooor'
     errors:
       <<: *errors
   activerecord:
@@ -215,16 +218,18 @@ es:
       question: 'pregunta'
       answer: 'respuesta'
       answer_group: 'grupo de respuestas'
+      questions:
+        radio: 'Roor'
     attributes:
       user:
         name: 'nombre'
         created_at: 'fecha creación'
       survey:
-        name: 'nombre'
+        name: 'Nombre'
         user_id: 'id de usuario'
         created_at: 'fecha creación'
         user_id: 'id de usuario'
-        scope: 'ambito'
+        scope: 'Ámbito'
       question:
         survey_id: 'id de encuesta'
         type: 'tipo'

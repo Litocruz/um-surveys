@@ -1,4 +1,4 @@
   module Questions
-    class Short < Question
+    class TextoCorto < Question
     end
   end

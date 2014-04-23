@@ -1,6 +1,5 @@
 class Question < ActiveRecord::Base
     
-      
     belongs_to :survey, :inverse_of => :questions
     has_many   :answers
 
@@ -11,7 +10,7 @@ class Question < ActiveRecord::Base
           class_name: "Question"       # Override the default column, which defaults to the name
 
     #before_save { |question| question.position =  :position_position, :last  }
-    default_scope order: 'questions.position DESC'
+    #default_scope order: 'questions.position DESC'
 
 
     if Rails::VERSION::MAJOR == 3

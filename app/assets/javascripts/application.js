@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require twitter/bootstrap
+//= require bootstrap-datetimepicker
+//= require bootstrap-datetimepicker/pickers
 //= require chart
 //= require_tree ./templates
 //= require_tree
@@ -63,6 +65,8 @@ $(function(){
         $.get(form.attr("action"), form.serialize(), null, "script");        
     });
 });
+
+
 
 /*$(function() {
     $("#questionTable").sortable({

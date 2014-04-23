@@ -1,5 +1,5 @@
   module Questions
-    class Select < Question
+    class SeleccionDeListado < Question
       validates :answer_options, :presence => true
 
       def options

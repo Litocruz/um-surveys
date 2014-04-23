@@ -1,5 +1,5 @@
   module Questions
-    class Checkbox < Question
+    class SeleccionMultiple < Question
       validates :answer_options, :presence => true
 
       def options

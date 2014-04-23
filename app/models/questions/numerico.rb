@@ -1,5 +1,5 @@
   module Questions
-    class Numeric < Question
+    class Numerico < Question
       def validate_answer(answer)
         super(answer)
 

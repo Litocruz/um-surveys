@@ -1,0 +1,4 @@
+<%= render partial: "answers/errors", locals: {answer: answer} %>
+
+<% f.label :answer_text, answer.question.question_text  %>
+<%= f.input :answer_text %>

@@ -1,13 +1,13 @@
   class QuestionForm < BaseService
     AVAILABLE_QUESTIONS =
       [
-       Questions::Checkbox,
-       Questions::Date,
-       #Questions::Long,
-       Questions::Numeric,
-       Questions::Radio,
-       Questions::Select,
-       #Questions::Short,
+       Questions::SeleccionMultiple,
+       Questions::Fecha,
+       Questions::TextoLargo,
+       Questions::Numerico,
+       Questions::SeleccionExcluyente,
+       Questions::SeleccionDeListado,
+       Questions::TextoCorto,
       ]
 
     QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|

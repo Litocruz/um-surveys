@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: f0316e55d6a46794e56d5e636ea838c9eaef34cb
+  specs:
+    datetimepicker-rails (0.0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,6 +160,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
   coffee-rails (~> 4.0.0)
+  datetimepicker-rails!
   ejs
   haml-rails
   jbuilder (~> 1.2)

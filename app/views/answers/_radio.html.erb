@@ -1,6 +1,6 @@
 <%= render partial: "answers/errors", locals: {answer: answer} %>
 
-<%= f.label :answer_text, answer.question.question_text %>
+<%= f.label :answer_text, answer.question.question_text,class:  'label-survey' %>
 
 <%- answer.question.options.each do |option| %>
   <%= f.label "answer_text_#{option}", option do %>
@@ -8,3 +8,4 @@
     <%= option %>
   <% end %>
 <% end %>
+<br />

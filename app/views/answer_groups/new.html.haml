@@ -1,16 +1,15 @@
 - model_class = AnswerGroup
 - provide(:title, "Encuesta")
-.page-header
-	%h2
-		= @survey.name
-		
-= simple_form_for([@survey, @answer_group_builder], :html => { :class => 'form-vertical' }) do |f|
-	- @answer_group_builder.answers.each do |answer|
-		= f.simple_fields_for("#{answer.question.id}", answer) do |answer_form|
-			.well
-				= render_answer_form_helper(answer, answer_form)
-	.form-actions
-		= f.button :submit, "Crear", :class => 'btn-primary btn-large'
-		= f.hidden_field "url_token", value: params[:url_token]
-		= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'
-
+.row
+	.span8.offset2
+		.page-header
+			%h2
+				%center= @survey.name		
+		= simple_form_for([@survey, @answer_group_builder]) do |f|
+			- @answer_group_builder.answers.each do |answer|
+				= f.simple_fields_for("#{answer.question.id}", answer)   do  |answer_form|
+					.well= render_answer_form_helper(answer, answer_form)
+			.form-actions
+				= f.button :submit, "Responder", :class => 'btn-primary btn-large'
+				= f.hidden_field "url_token", value: params[:url_token]
+				= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'

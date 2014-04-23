@@ -1,5 +1,5 @@
   module Questions
-    class Date < Question
+    class Fecha < Question
       def validate_answer(answer)
         super(answer)
 

@@ -16,6 +16,7 @@ gem 'jquery-tablesorter'
 gem 'jquery-sortable-rails'
 gem 'jquery-ui-rails'
 gem 'ranked-model'
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

@@ -13,26 +13,31 @@
             if @answer_group_builder.save
               participant.update_attributes!(:status => true)
               flash[:success] = "Gracias por votar #{participant.name}!"
+              redirect_to root_path
             else
               flash.now[:error] = "Se produjo un error"
+              render :new
             end
         else
           flash[:error] = "Ya voto. #{participant.name}"
+          redirect_to root_path
         end
       else
         if has_voted?
-          flash.now[:error] = "Usted ya voto"
+          flash[:error] = "Usted ya voto"
+          redirect_to root_path
         else
           if @answer_group_builder.save
             vote
             flash[:success] = "Gracias por votar!"
+            redirect_to root_path
           else
             flash.now[:error] = "Se produjo un error"
+            render :new
           end
           
         end
       end
-      redirect_to root_path
     end
 
     def hasnt_voted_participant?
