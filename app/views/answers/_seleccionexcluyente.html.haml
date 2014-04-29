@@ -1,0 +1,2 @@
+=# render partial: "answers/errors", locals: {answer: answer} 
+= f.input :answer_text, collection: answer.question.options, as: :radio_buttons, label: answer.question.question_text, label_html: (link_colored(answer.question))

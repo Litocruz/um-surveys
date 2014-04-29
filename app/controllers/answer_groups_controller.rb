@@ -15,7 +15,7 @@
               flash[:success] = "Gracias por votar #{participant.name}!"
               redirect_to root_path
             else
-              flash.now[:error] = "Se produjo un error"
+              flash.now[:error] = "Se encontraron errores"
               render :new
             end
         else
@@ -32,7 +32,7 @@
             flash[:success] = "Gracias por votar!"
             redirect_to root_path
           else
-            flash.now[:error] = "Se produjo un error"
+            flash.now[:error] = "Se encontraron errores"
             render :new
           end
           

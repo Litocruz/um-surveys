@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325222016) do
+ActiveRecord::Schema.define(version: 20140423221648) do
 
   create_table "answer_groups", force: true do |t|
     t.integer  "survey_id"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20140325222016) do
     t.text     "validation_rules"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "description"
   end
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id"
@@ -64,6 +66,11 @@ ActiveRecord::Schema.define(version: 20140325222016) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "scope",      default: 0
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "code"
+    t.boolean  "status",     default: false
+    t.string   "banner"
   end
 
   add_index "surveys", ["user_id"], name: "index_surveys_on_user_id"

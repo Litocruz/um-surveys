@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
 
 
     if Rails::VERSION::MAJOR == 3
-      attr_accessible :survey, :question_text, :validation_rules, :answer_options
+      attr_accessible :survey, :question_text, :validation_rules, :answer_options, :title, :description
     end
 
     def self.inherited(child)

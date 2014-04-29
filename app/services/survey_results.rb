@@ -11,13 +11,13 @@
       @survey.questions.collect do |question|
         results =
           case question
-          when Questions::Select, Questions::Radio,
-            Questions::Checkbox
+          when Questions::SeleccionDeListado, Questions::SeleccionExcluyente,
+            Questions::SeleccionMultiple
             answers = question.answers.map(&:answer_text).map { |text| text.split(',') }.flatten
             answers.inject(Hash.new(0)) { |total, e| total[e] += 1; total }
 
-          when Questions::Short, Questions::Date,
-            Questions::Long, Questions::Numeric
+          when Questions::TextoCorto, Questions::Fecha,
+            Questions::TextoLargo, Questions::Numerico
             question.answers.pluck(:answer_text)
           end
 

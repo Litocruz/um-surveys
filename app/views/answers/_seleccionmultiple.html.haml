@@ -1,0 +1,1 @@
+= f.input :answer_text, as: :check_boxes, collection: answer.question.options, label: answer.question.question_text, label_html: (link_colored(answer.question)), checked: answer.answer_text.try(:split, ",")

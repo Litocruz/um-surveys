@@ -1,16 +1,15 @@
 = simple_form_for [@survey, @question], :html => { :class => 'form-horizontal' } do |f|
 	.row-fluid
-		.span7
-			= f.input :type, collection: ::QuestionForm::QUESTION_TYPES, id: "question_type", label: "tipo"
-			= f.input :question_text, label: "Pregunta"
-			= f.input :answer_options, as: :text, label: "Opciones de Respuesta", input_html: { :rows => '6' }
-			= f.hint 'Escriba las opciones separadas por ENTER'
-			= f.hint 'Si no hay opciones deje el cuadro en blanco'
-		.span5
+		.span6
+			= f.input :title, label: "Titulo para exportación", placeholder: 'Titulo para columna de archivo CSV'
+			= f.input :type, collection: ::QuestionForm::QUESTION_TYPES, id: "question_type", label: "Tipo"
+			= f.input :question_text, label: "Pregunta", placeholder: 'Escriba la Pregunta'
+			= f.input :answer_options, as: :text, label: "Opciones de Respuesta", input_html: { :rows => '6' }, hint: 'Escriba las opciones separadas por ENTER. Si no hay opciones deje el cuadro en blanco.', placeholder: 'Escriba las opciones de respuesta separadas por ENTER'
+		.span6
 			%h4
 				%strong Otras Opciones
-			%hr
 			.well	
+				= f.input :description, label: "Descripción", placeholder: 'Descripción de la pregunta'
 				= f.input :answer_presence,   as: :boolean ,label: "¿Es obligatoria?"
 				.row-fluid
 					.span6

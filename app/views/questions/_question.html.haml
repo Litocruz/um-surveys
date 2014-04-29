@@ -3,7 +3,7 @@
 		%tr{class: 'item', data: {item_id: "#{question.id}"}}
 			//td=# question.position
 			%td= question.type.split('::').last
-			%td= link_colored question
+			%td= link_to question.question_text.truncate(90), [:edit, question.survey, question], html: ( link_colored question )
 			%td=l question.created_at
 			%td
 				= link_to glyph(:edit),[:edit, question.survey, question], :class => 'btn btn-mini', title: "editar"
