@@ -1,4 +1,9 @@
 - model_class = Survey
-.page-header
-  %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+- survey = @survey
+.row
+	.span8.offset1
+		.page-header
+			.pull-right= link_to_with_icon @survey, toggle_status_survey_path(survey), remote: true, method: :get, id: "status_#{survey.id}", class: "btn btn-mini "
+			%h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
 = render :partial => "form"
+=# link_to glyph(:"off"), change_link_text(@survey), toggle_status_survey_path(@survey), remote: true, method: :get, id: :status, class: "btn btn-mini success"

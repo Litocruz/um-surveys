@@ -3,7 +3,7 @@
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     #before_action :correct_user
     respond_to :html, :js
-    respond_to :json, only: :results
+    respond_to :json, only: [:results, :toggle_status]
 
     def index
       @surveys = current_user.surveys.paginate(page: params[:page], per_page: 10)
@@ -54,6 +54,12 @@
       @survey_results = SurveyResults.new(survey: @survey).extract
 
       respond_with(@survey_results, root: false)
+    end
+    def toggle_status
+      @survey = Survey.find(params[:id])
+      @survey.toggle!(:status)  
+      #render nothing: true 
+      respond_with(@survey, location: index_location)
     end
 
     private

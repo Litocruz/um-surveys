@@ -1,6 +1,6 @@
 - @surveys.each do |survey|
   %tr
-    %td= survey.id
+    %td= link_to_with_icon survey, toggle_status_survey_path(survey), remote: true, method: :get, id: "status_#{survey.id}", class: "btn btn-mini "
     %td= link_to survey.name, survey_questions_path(survey)
     %td= survey.user.name
     %td= survey.scope == 1 ? "privada" : "publica"

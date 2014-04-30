@@ -1,0 +1,3 @@
+$('#status_<%=@survey.id %>').removeClass(function() {
+  return $( this ).attr( "class" );
+}).addClass("<%= change_class(@survey) %>").attr( "title","<%= change_title(@survey) %>");
