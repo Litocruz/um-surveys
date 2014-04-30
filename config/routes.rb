@@ -11,7 +11,7 @@ UmSurveys::Application.routes.draw do
 
   resources :surveys do
     get 'results', on: :member
-
+    get 'toggle_status', on: :member
     resources :questions do
       collection {post :reorder}
     end

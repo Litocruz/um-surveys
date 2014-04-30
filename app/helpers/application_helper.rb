@@ -24,6 +24,21 @@ module ApplicationHelper
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
+
+  def change_class(stateable)  
+    stateable.status? ? 'btn btn-mini btn-success' : 'btn btn-mini btn-danger'  
+  end
+  def change_title(stateable)  
+    stateable.status? ? 'Activa' : 'Inactiva'  
+  end
+
+  def link_to_with_icon(stateable, url, options = {})
+    clas = stateable.status? ? 'btn-success' : 'btn-danger'
+    title = stateable.status? ? 'Activa' : 'Inactiva'
+    options[:class] = options[:class] << ' ' << clas
+    options[:title] = title
+    link_to glyph(title), url, options
+  end
   
   private
     def wrap_long_string(text, max_width = 3)
