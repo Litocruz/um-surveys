@@ -65,7 +65,7 @@
     private
       def survey_params
         if Rails::VERSION::MAJOR == 4
-          params.require(:survey).permit(:name, :scope)
+          params.require(:survey).permit(:name, :remove_banner, :scope, :code, :start_date, :end_date, :banner)
         else
           params[:survey]
         end
