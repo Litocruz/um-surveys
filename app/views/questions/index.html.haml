@@ -7,7 +7,7 @@
 %table.tablesorter#questionTable{:data => {update_url:reorder_survey_questions_path}}
   %thead
     %tr
-      //th=# model_class.human_attribute_name(:position)
+      %th= model_class.human_attribute_name(:title)
       %th= model_class.human_attribute_name(:type)
       %th= model_class.human_attribute_name(:question_text)
       %th= model_class.human_attribute_name(:created_at)
