@@ -62,10 +62,19 @@
       respond_with(@survey, location: index_location)
     end
 
+    def uploadBanner
+      post = Survey.save(params[:banner])
+      render text: "Banner agregado exitosamente"
+    end
+
+    def cleanup
+      File.delete("#{RAILS_ROOT}/dirname/#{filename}") if File.exist?("#{RAILS_ROOT}/dirname/#{@filename}")
+    end
+
     private
       def survey_params
         if Rails::VERSION::MAJOR == 4
-          params.require(:survey).permit(:name, :scope)
+          params.require(:survey).permit(:name, :scope, :code, :start_date, :end_date, :banner)
         else
           params[:survey]
         end

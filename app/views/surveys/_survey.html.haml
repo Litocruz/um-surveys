@@ -10,4 +10,4 @@
       = link_to glyph(:"eye-open"), [:results, survey], class: "btn btn-mini", title: "ver Resultados"
       = link_to glyph(:edit), edit_survey_path(survey), class: 'btn btn-mini', title: "editar"
       = link_to glyph(:user), survey_participants_path(survey), class: "btn btn-mini", title: "Participantes" unless survey.scope != 1
-      = link_to glyph(:trash, :white), survey_path(survey), :confirm => '¿Esta seguro?', :method => :delete, class: 'btn btn-danger btn-mini', title: "eliminar"
+      = link_to glyph(:trash, :white), survey_path(survey), data: {confirm: '¿Esta seguro?'}, :method => :delete, class: 'btn btn-danger btn-mini', title: "eliminar"
