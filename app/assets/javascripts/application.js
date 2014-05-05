@@ -24,6 +24,7 @@
 //= require jquery.sortable
 //= require jquery.ui.all
 
+
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
     $('#confirm-modal #delete').on("click", function(){

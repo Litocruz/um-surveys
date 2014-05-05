@@ -26,17 +26,17 @@
         </ul>
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Cuenta <b class="caret"></b>
-              </a>
+            <div class="btn-group">
+              <a class="btn " href="#"><i class="icon-user"></i> Usuario</a>
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Perfil", current_user %></li>
-                <li><%= link_to "Actualizar Perfil", edit_user_path(current_user) %></li>
+                <li><%= link_to glyph(:"eye-open") + " Perfil", current_user %></li>
+                <li><%= link_to glyph(:pencil) + " Actualizar Perfil", edit_user_path(current_user) %></li>
+                <li><%= link_to glyph(:off) + " Salir", signout_path, method: "delete" %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Salir", signout_path, method: "delete" %></li>
+                <li><a href="#"><i class="i"></i> Make admin</a></li>
               </ul>
-            </li>
+            </div>
           <% else %>  
             <li><%= link_to "Ingresar", signin_path  %></li>
           <% end %>

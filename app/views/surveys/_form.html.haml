@@ -10,10 +10,8 @@
 				.span4	
 					= f.input :end_date, as: :datetime_picker
 			= f.input :scope, collection: {publico: 0, privado: 1}, include_blank: false
-			=	f.input :banner, as: :file
-			.row-fluid
-				.span3.offset1
-					= image_tag(@survey.banner_url, :width => 600) if @survey.banner.present? 
+
+			= render partial: 'file_upload', :locals => {f: f}
 	.form-actions
 		= f.button :submit, :class => 'btn-primary btn-large'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'

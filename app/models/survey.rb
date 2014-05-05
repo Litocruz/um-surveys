@@ -13,11 +13,4 @@ class Survey < ActiveRecord::Base
   if Rails::VERSION::MAJOR == 3
     attr_accessible :name
   end
-
-  def upload(upload)
-    name = upload['banner'].original_filename
-    directory = "public/data"
-    path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(upload['banner'].read) }
-  end
 end
