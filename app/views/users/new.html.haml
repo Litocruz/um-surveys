@@ -1,6 +1,5 @@
 - provide(:title, 'Registrar')
-.page-header
-	%h1 Registrar
+- provide(:header, "NUEVO USUARIO")
 = simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
 	= render 'fields', f: f 
 	%br.br

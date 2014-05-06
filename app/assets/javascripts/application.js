@@ -24,6 +24,7 @@
 //= require jquery.sortable
 //= require jquery.ui.all
 
+$('.collapse').collapse()
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	

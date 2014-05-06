@@ -1,10 +1,10 @@
 - model_class = AnswerGroup
 - provide(:title, "Encuesta")
+- provide(:header, "Encuesta")
 .row
 	.span8.offset2
-		.page-header
-			%h2
-				%center= @survey.name		
+		%h2
+			%center= @survey.name		
 		-if @survey.banner?
 			= image_tag @survey.banner.url
 		%hr
@@ -13,6 +13,6 @@
 				= f.simple_fields_for("#{answer.question.id}", answer, :html => { :class => 'form-vaertical' }) do |answer_form|
 					.well= render_answer_form_helper(answer, answer_form)
 			.form-actions
-				= f.button :submit, "Responder", :class => 'btn-primary btn-large'
+				= f.button :submit, "Responder", :class => 'btn-primary'
 				= f.hidden_field "url_token", value: params[:url_token]
 				= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'

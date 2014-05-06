@@ -2,17 +2,13 @@
 	.row-fluid
 		.span9
 			= f.input :name
-			.row-fluid
-				.span4
-					=	f.input :code
-				.span4
-					= f.input :start_date, as: :datetime_picker
-				.span4	
-					= f.input :end_date, as: :datetime_picker
+			=	f.input :code
+			= f.input :start_date, as: :datetime_picker
+			= f.input :end_date, as: :datetime_picker		
 			= f.input :scope, collection: {publico: 0, privado: 1}, include_blank: false
 
 			= render partial: 'file_upload', :locals => {f: f}
 	.form-actions
-		= f.button :submit, :class => 'btn-primary btn-large'
+		= f.button :submit, :class => 'btn-primary'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'
 

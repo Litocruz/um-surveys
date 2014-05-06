@@ -1,5 +1,4 @@
 @import "twitter/bootstrap/bootstrap";
-//body { padding-top: 60px; } 
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
@@ -16,8 +15,6 @@
 // Font Awesome
 //@import "fontawesome/font-awesome";
 
-
-
 // Glyphicons
 @import "twitter/bootstrap/sprites.less";
 
@@ -30,6 +27,8 @@
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 //
 // Example:
+
+
 // @linkColor: #ff0000;
 .list-inline {
   padding-left: 0;
@@ -60,5 +59,3 @@
     cursor: inherit;
     display: block;
 }
-
-

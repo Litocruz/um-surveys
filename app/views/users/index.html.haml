@@ -1,6 +1,5 @@
 - model_class = User
-.page-header
-	%h1 Todos los usuarios
+- provide(:header, "USUARIOS")
 = will_paginate 
 = #@users is a list of User objects; moreover, when called with a collection of users, Rails automatically iterates through them and renders each one
 %table.sortable#userTable
