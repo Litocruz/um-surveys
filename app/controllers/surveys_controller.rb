@@ -4,6 +4,8 @@
     #before_action :correct_user
     respond_to :html, :js
     respond_to :json, only: [:results, :toggle_status]
+    respond_to :csv
+    respond_to :xls
 
     def index
       @surveys = current_user.surveys.paginate(page: params[:page], per_page: 10)
@@ -52,7 +54,12 @@
     def results
       @survey = Survey.find(params[:id])
       @survey_results = SurveyResults.new(survey: @survey).extract
-
+=begin      
+      respond_to do |format|
+        format.html
+        format.csv { render text: @survey_results.to_csv }
+      end
+=end
       respond_with(@survey_results, root: false)
     end
     def toggle_status
