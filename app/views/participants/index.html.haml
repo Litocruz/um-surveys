@@ -1,5 +1,6 @@
-%h1 
-	Participantes de la encuesta 
+- provide(:header, "PARTICIPANTES")
+%h2
+	Encuesta 
 	%small= @survey.name 
 
 - flash[:notice]
@@ -25,7 +26,7 @@
 					%td= link_to survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token), survey_answer_participant_url(:survey_id => participant.survey_id, :url_token => participant.url_token)
 					%td= human_boolean(participant.status)
 	%div.actions
-		= submit_tag "Enviar Emails", :class => 'btn btn-primary btn-large'
+		= submit_tag "Enviar Emails", :class => 'btn btn-primary'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), surveys_path, :class => 'btn'
 %div.well
 	%h4 Asignar Participantes (Archivo .CSV)
