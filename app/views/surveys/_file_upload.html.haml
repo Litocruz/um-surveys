@@ -1,12 +1,10 @@
 .row-fluid
   .span4
     = f.input :banner, as: :file, input_html: {class: "btn btn-default btn-file"}
-  .span4
-    .controls
-      .fileupload.fileupload-new{"data-provides" => "fileupload"}
-      .fileupload-new.thumbnail{style: "width: 50px; height: 50px;"}= image_tag @survey.banner.url if @survey.banner?
-      =# link_to glyph(:remove, :white), :remove_image, data: {confirm: '¿Esta seguro?', dismiss: "fileupload"}, :method => :delete, class: 'btn btn-danger btn-mini',title: "Eliminar Banner"
-      
-  .span1
-    %div ¿Eliminar?
-    =f.check_box :remove_banner
+-if @survey.banner?
+  .row-fluid
+    .span4.offset2
+      = image_tag @survey.banner.url
+    .span3
+      =f.check_box :remove_banner
+      .label ¿Eliminar?

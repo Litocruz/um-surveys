@@ -26,16 +26,14 @@ table.tablesorter thead tr.tablesorter-filter-row input.disabled {
 #questionTable tr {
     cursor: move;
 }
-.simple_form label {
-  
-}
+
 .label-survey{
 	color: #000000;
-	font-weight:bold;
-	font-size: 18px;	
+	/*font-weight:bold;
+	font-size: 18px;	*/
 }
 .label-survey-red{
-	font-weight:bold; 
+	/*font-weight:bold; 
+	font-size: 18px;*/
 	color: #f90f02;
-	font-size: 18px;	
 }

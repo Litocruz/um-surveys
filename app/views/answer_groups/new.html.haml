@@ -5,6 +5,9 @@
 		.page-header
 			%h2
 				%center= @survey.name		
+		-if @survey.banner?
+			= image_tag @survey.banner.url
+		%hr
 		= simple_form_for([@survey, @answer_group_builder], :html => { :class => 'form-vertical' }) do |f|
 			- @answer_group_builder.answers.each do |answer|
 				= f.simple_fields_for("#{answer.question.id}", answer, :html => { :class => 'form-vaertical' }) do |answer_form|

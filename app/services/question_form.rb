@@ -8,6 +8,7 @@
        Questions::SeleccionExcluyente,
        Questions::SeleccionDeListado,
        Questions::TextoCorto,
+       Questions::Separador
       ]
 
     QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|

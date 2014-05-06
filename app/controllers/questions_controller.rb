@@ -3,7 +3,7 @@
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     respond_to :html, :js
 
-    before_filter :find_survey!, :only => [:index, :new, :create, :reorder]
+    before_filter :find_survey!, :only => [:index, :new, :create, :reorder, :edit, :update]
     before_filter :find_question!, :only => [:edit, :update, :destroy]
     
 
