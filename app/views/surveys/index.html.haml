@@ -1,6 +1,5 @@
 - model_class = Survey
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+- provide(:header, "Encuestas")
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 = will_paginate @surveys
@@ -16,4 +15,4 @@
   %tbody
     = render partial: "survey" #= render partial: "survey", collection: @surveys
 = will_paginate @surveys
-= link_to t('.new', :default => t("helpers.links.Nueva Encuesta")), new_survey_path, :class => 'btn btn-primary btn-large'
+= link_to t('.new', :default => t("helpers.links.Nueva Encuesta")), new_survey_path, :class => 'btn btn-primary'

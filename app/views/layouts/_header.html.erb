@@ -6,9 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="brand" href="<%= root_path %>">Encuestas UM</a>
+      <a class="brand" href="<%= root_path %>">ENCUESTAS UM<i class="icon-home"></i></a>
+      <ul class="nav">
+            <li><%= content_for?(:header) ? yield(:header) : " " %></li>
+      </ul>
       <div class="container-fluid nav-collapse">
-        <ul class="nav">
+        <ul class="nav pull-right">
           <% if signed_in? %>
             <li><%= link_to "Encuestas", surveys_path  %></li>
             <% if signed_in? && current_user.admin? %>
@@ -24,6 +27,7 @@
             <% end %>
           <% end %>
         </ul>
+         
         <ul class="nav pull-right">
           <% if signed_in? %>
             <div class="btn-group">
