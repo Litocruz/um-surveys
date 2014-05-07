@@ -3,9 +3,13 @@
 %ul.nav.nav-tabs
 	%li.active= link_to "Graficos", "#json-results", "data-toggle" => "tab"
 	%li= link_to "Tablas", "#html-results", "data-toggle" => "tab"
+	%li= link_to "Exportar", "#xls-results", "data-toggle" => "tab"
 
 .tab-content
 	.tab-pane.active#json-results
 		= render partial: "json_results", locals: { survey: @survey }
 	.tab-pane#html-results
 		= render partial: "html_results", locals: { results: @survey_results }
+	.tab-pane#xls-results
+		= link_to "XLS", results_survey_path(format: "xls")
+		= link_to "XLS", results_survey_path(format: "csv")

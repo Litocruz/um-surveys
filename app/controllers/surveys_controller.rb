@@ -2,10 +2,10 @@
     #before_filter :authenticate_administrator!, except: :index
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     #before_action :correct_user
-    respond_to :html, :js
-    respond_to :json, only: [:results, :toggle_status]
-    respond_to :csv
-    respond_to :xls
+    respond_to :html, :js, only: [:results]
+    respond_to :json, only: [:results]
+    respond_to :csv, only: [:results]
+    respond_to :xls, only: [:results]
 
     def index
       @surveys = current_user.surveys.paginate(page: params[:page], per_page: 10)
@@ -54,12 +54,6 @@
     def results
       @survey = Survey.find(params[:id])
       @survey_results = SurveyResults.new(survey: @survey).extract
-=begin      
-      respond_to do |format|
-        format.html
-        format.csv { render text: @survey_results.to_csv }
-      end
-=end
       respond_with(@survey_results, root: false)
     end
     def toggle_status

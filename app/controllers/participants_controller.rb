@@ -13,14 +13,14 @@ class ParticipantsController < ApplicationController
 			participant_hash.each{ |part|
 				participant = Participant.where(email: part["email"], survey_id: @survey.id)
 	      if participant.count == 1
-	        Rails.logger.debug "ControllerP Encontro coincidencia parth: #{part.inspect}"
+	        #Rails.logger.debug "ControllerP Encontro coincidencia parth: #{part.inspect}"
 	        participant.first.update_attributes(part)
 	        #participant.first.update_attributes(participant_hash.except("id"))
 	      else
-	      	Rails.logger.debug "ControllerP No Encontro coincidencia part: #{part.inspect}"
+	      	#Rails.logger.debug "ControllerP No Encontro coincidencia part: #{part.inspect}"
 	        status = @survey.participants.create!(part)
           #update_attributes!(:url => Base64::encode64(id.to_s))
-	        Rails.logger.debug "ControllerP status: #{status.inspect}"
+	        #Rails.logger.debug "ControllerP status: #{status.inspect}"
 	      end # end if !participant.nil?
 			}
       redirect_to survey_participants_url, notice: "Participantes actualizados."	
@@ -31,7 +31,7 @@ class ParticipantsController < ApplicationController
 
   def send_mails
     participants = Participant.find_all_by_survey_id(params[:survey_id])
-    Rails.logger.debug "send_mails Participants : #{participants.inspect}"
+    #Rails.logger.debug "send_mails Participants : #{participants.inspect}"
     participants.each{ |participant|
       participant.send_survey_email if participant
     }
