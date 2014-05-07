@@ -8,6 +8,7 @@
     %td
       = link_to glyph(:"play"), new_survey_answer_group_path(survey), class: "btn btn-mini", title: "Responder Encuesta"
       = link_to glyph(:"eye-open"), [:results, survey], class: "btn btn-mini", title: "ver Resultados"
+      = link_to glyph(:"circle-arrow-down"), results_survey_path(survey,format: "xls"), class: "btn btn-mini", title: "Exportar Datos"
       = link_to glyph(:edit), edit_survey_path(survey), class: 'btn btn-mini', title: "editar"
       = link_to glyph(:user), survey_participants_path(survey), class: "btn btn-mini", title: "Participantes" unless survey.scope != 1
       = link_to glyph(:trash, :white), survey_path(survey), data: {confirm: '¿Esta seguro?'}, :method => :delete, class: 'btn btn-danger btn-mini', title: "eliminar"

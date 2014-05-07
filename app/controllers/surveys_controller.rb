@@ -2,7 +2,7 @@
     #before_filter :authenticate_administrator!, except: :index
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     #before_action :correct_user
-    respond_to :html, :js, only: [:results]
+    respond_to :html, :js
     respond_to :json, only: [:results]
     respond_to :csv, only: [:results]
     respond_to :xls, only: [:results]
