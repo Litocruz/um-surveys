@@ -1,0 +1,3 @@
+$("#<%= dom_id(@survey) %>").fadeOut()
+$(".alert").html("<%= escape_javascript(flash[:success])%>");
+$(".alert").show(300);

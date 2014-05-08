@@ -3,7 +3,7 @@
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     #before_action :correct_user
     respond_to :html, :js
-    respond_to :json, only: [:results]
+    respond_to :json, only: [:results, :destroy]
     respond_to :csv, only: [:results]
     respond_to :xls, only: [:results]
 
@@ -18,6 +18,7 @@
 
     def new
       @survey = Survey.new
+      @mail_votante = ""
       respond_with(@survey)
     end
 
@@ -31,6 +32,7 @@
 
     def edit
       @survey = Survey.find(params[:id])
+      @mail_votante = ""
     end
 
     def update
@@ -46,7 +48,7 @@
     def destroy
       @survey = Survey.find(params[:id])
       if @survey.destroy
-        flash[:success] = "Encuesta Eliminada"
+        flash.now[:success] = "Encuesta Eliminada"
       end
       respond_with(@survey)
     end

@@ -1,6 +1,6 @@
 #sortable	
 	- @questions.each do |question|
-		%tr{class: "item #{question.validation_rules[:presence] == "1" ? 'label-survey-red' : 'label-survey'}", data: {item_id: "#{question.id}"}}
+		%tr{id: "question_#{question.id}", class: "item #{question.validation_rules[:presence] == "1" ? 'label-survey-red' : 'label-survey'}", data: {item_id: "#{question.id}"}}
 			//td=# question.position
 			%td= question.title
 			%td= question.type.split('::').last
@@ -8,4 +8,4 @@
 			%td=l question.created_at
 			%td
 				= link_to glyph(:pencil),[:edit, question.survey, question], :class => 'btn btn-mini', title: "editar"
-				= link_to glyph(:trash, :white), [question.survey, question], data: {confirm: '¿Esta seguro?'}, :method => :delete, :class => 'btn btn-danger btn-mini', title: "eliminar"
+				= link_to glyph(:trash, :white), [question.survey, question], data: {confirm: '¿Esta seguro?'}, method: :delete, remote: true, :class => 'btn btn-danger btn-mini', title: "eliminar"

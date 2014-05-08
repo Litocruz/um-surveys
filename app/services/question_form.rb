@@ -62,6 +62,7 @@
         :answer_options => answer_options,
         :title => title,
         :description => description,
+        :type => type,
         :validation_rules => {
           :presence => answer_presence,
           :minimum  => answer_minimum_length,
@@ -82,5 +83,7 @@
       self.answer_maximum_length = question.rules[:maximum]
       self.answer_greater_than_or_equal_to = question.rules[:greater_than_or_equal_to]
       self.answer_less_than_or_equal_to    = question.rules[:less_than_or_equal_to]
+      self.title = question.title
+      self.description = question.description
     end
   end
