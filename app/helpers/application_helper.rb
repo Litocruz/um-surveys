@@ -26,15 +26,22 @@ module ApplicationHelper
   end
 
   def change_class(stateable)  
-    stateable.status? ? 'btn btn-mini btn-success' : 'btn btn-mini btn-danger'  
+    estado = stateable.status? ? 'btn btn-mini btn-success' : "btn btn-mini btn-warning"
+    estado = stateable.end_date < Time.now ? "btn btn-mini btn-danger" : estado unless stateable.end_date.nil?
+    return estado
+    Rails.logger.debug "stateable.end_date.nil?: #{stateable.end_date.nil?}"
+    Rails.logger.debug "estado: #{estado}"
   end
   def change_title(stateable)  
-    stateable.status? ? 'Activa' : 'Inactiva'  
+    estado = stateable.status? ? 'Activa' : 'Inactiva'  
+    estado = stateable.end_date < Time.now ? 'Finalizado' : estado unless stateable.end_date.nil?
+    return estado
   end
 
   def link_to_with_icon(stateable, url, options = {})
-    clas = stateable.status? ? 'btn-success' : 'btn-danger'
+    clas = stateable.status? ? 'btn-success' : 'btn-warning'
     title = stateable.status? ? 'Activa' : 'Inactiva'
+    stateable.end_date < Time.now ? clas = 'btn-danger' : clas unless stateable.end_date.nil?
     options[:class] = options[:class] << ' ' << clas
     options[:title] = title
     link_to glyph(title), url, options

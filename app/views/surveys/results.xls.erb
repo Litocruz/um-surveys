@@ -1,25 +1,45 @@
 <?xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+<ss:Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:o="urn:schemas-microsoft-com:office:office"
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
-    <Table>
-      <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Release Date</Data></Cell>
-        <Cell><Data ss:Type="String">Price</Data></Cell>
-      </Row>
-    <% @survey_results.each do |result| %>
-      <Row>
-        <Cell><Data ss:Type="Number"><%= result.question.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= result.question.question_text %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= result.question.question_text %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= result.question.question_text %></Data></Cell>
-      </Row>
-    <% end %>
-    </Table>
-  </Worksheet>
-</Workbook>
+  <ss:Styles>
+    <ss:Style ss:ID="1">
+        <ss:Font ss:Bold="1"/>
+    </ss:Style>
+  </ss:Styles>
+  <ss:Worksheet ss:Name="Encuestas UM">
+    <ss:Table>
+      <ss:Row ss:StyleID="1">
+        <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String">ENCUESTA UM</ss:Data></ss:Cell>
+      </ss:Row>
+      <% @survey_results.each do |result| %>
+        <ss:Row ss:StyleID="1" ss:Width="601.25">
+          <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40">
+            <%= result.question.title %></ss:Data>
+          </ss:Cell>
+        </ss:Row>
+
+        <% if result.results.is_a?(Array) %>
+          <% result.results.each do |answer| %>
+            <ss:Row>
+              <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String"><%=answer%></ss:Data></ss:Cell>
+            </ss:Row>
+          <% end %>
+        <% elsif result.results.is_a?(Hash) %>
+          <ss:Row>
+            <ss:Cell><ss:Data ss:Type="String"> OPCIÓN </ss:Data></ss:Cell>
+            <ss:Cell><ss:Data ss:Type="String"> CANTIDAD </ss:Data></ss:Cell>
+          </ss:Row>
+          <% result.results.each do |option, count| %>
+            <ss:Row>
+              <ss:Cell><ss:Data ss:Type="String"><%=option %></ss:Data></ss:Cell>
+              <ss:Cell><ss:Data ss:Type="String"><%=count %></ss:Data></ss:Cell>
+            </ss:Row>
+          <% end %>
+        <% end %>
+      <% end %>
+     </ss:Table> 
+  </ss:Worksheet>
+</ss:Workbook>

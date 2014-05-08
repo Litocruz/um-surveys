@@ -24,7 +24,6 @@
 //= require jquery.sortable
 //= require jquery.ui.all
 
-$('.collapse').collapse()
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
@@ -214,27 +213,22 @@ $(function() {
         }
     }
    });
-  
-
-}); 
-$(function() {
-  $("#userTable").tablesorter({
-    theme : 'bootstrap',
+   $("#userTable").tablesorter({
     headers: { 
           // assign the secound column (we start counting zero) 
           0: { 
               // disable it by setting the property sorter to false 
-              sorter: false,
+              sorter: true,
               filter: true
           },
           1: { 
               // disable it by setting the property sorter to false 
-              sorter: false,
+              sorter: true,
               filter: true
           },
           2: { 
               // disable it by setting the property sorter to false 
-              sorter: false,
+              sorter: true,
               filter: true
           },
           3: { 
@@ -244,4 +238,5 @@ $(function() {
           }
       }
   });
-});
+
+}); 

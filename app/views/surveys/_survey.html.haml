@@ -1,14 +1,15 @@
 - @surveys.each do |survey|
   %tr
     %td= link_to_with_icon survey, toggle_status_survey_path(survey), remote: true, method: :get, id: "status_#{survey.id}", class: "btn btn-mini"
-    %td= link_to survey.name, survey_questions_path(survey)
+    %td= survey.name
     %td= survey.user.name
     %td= survey.scope == 1 ? "privada" : "publica"
     %td=l survey.created_at
     %td
       = link_to glyph(:"play"), new_survey_answer_group_path(survey), class: "btn btn-mini", title: "Responder Encuesta"
-      = link_to glyph(:"eye-open"), [:results, survey], class: "btn btn-mini", title: "ver Resultados"
+      = link_to glyph(:signal), [:results, survey], class: "btn btn-mini", title: "ver Resultados"
       = link_to glyph(:"circle-arrow-down"), results_survey_path(survey,format: "xls"), class: "btn btn-mini", title: "Exportar Datos"
-      = link_to glyph(:edit), edit_survey_path(survey), class: 'btn btn-mini', title: "editar"
+      = link_to glyph(:plus), survey_questions_path(survey), class: 'btn btn-mini', title: "Agregar Preguntas"
+      = link_to glyph(:pencil), edit_survey_path(survey), class: 'btn btn-mini', title: "editar Encuesta"
       = link_to glyph(:user), survey_participants_path(survey), class: "btn btn-mini", title: "Participantes" unless survey.scope != 1
       = link_to glyph(:trash, :white), survey_path(survey), data: {confirm: '¿Esta seguro?'}, :method => :delete, class: 'btn btn-danger btn-mini', title: "eliminar"
