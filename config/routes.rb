@@ -2,7 +2,9 @@ UmSurveys::Application.routes.draw do
   get "participants/index"
   get "participants/import"
   #post "participants/send_mails"
-  resources :users
+  resources :users do
+    collection {delete :destroy_multiple}
+  end
   resources :sessions, only: [:new, :create, :destroy]
   #root  'users#index'
   match '/signup',  to: 'users#new',         via: 'get'
@@ -12,8 +14,10 @@ UmSurveys::Application.routes.draw do
   resources :surveys do
     get 'results', on: :member
     get 'toggle_status', on: :member
+    collection {delete :destroy_multiple}
     resources :questions do
       collection {post :reorder}
+      collection {delete :destroy_multiple}
     end
     resources :answer_groups, only: [:new, :create]
     resources :participants do

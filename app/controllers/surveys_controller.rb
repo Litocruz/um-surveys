@@ -1,6 +1,6 @@
   class SurveysController < ApplicationController
     #before_filter :authenticate_administrator!, except: :index
-    before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+    before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :destroy_multiple]
     #before_action :correct_user
     respond_to :html, :js
     respond_to :json, only: [:results, :destroy]
@@ -53,16 +53,38 @@
       respond_with(@survey)
     end
 
+    def destroy_multiple
+      @surveys=Survey.destroy_all(id: params[:surveys_ids])
+      if @surveys == []
+        flash[:error] = "No se seleccionaron encuestas"
+      else
+        flash[:success] = "Encuestas Eliminadas"
+      end
+      respond_with do |format|
+        format.html { redirect_to surveys_path }
+        format.json { head :no_content }
+      end
+    end
+
     def results
       @survey = Survey.find(params[:id])
       @survey_results = SurveyResults.new(survey: @survey).extract
       respond_with(@survey_results, root: false)
     end
+
     def toggle_status
       @survey = Survey.find(params[:id])
       @survey.toggle!(:status)  
       #render nothing: true 
       respond_with(@survey, location: index_location)
+    end
+
+    def edit_multiple
+    
+    end
+      
+    def update_multiple
+       
     end
 
     private

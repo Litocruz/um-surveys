@@ -1,5 +1,6 @@
 - @surveys.each do |survey|
   %tr{id: "survey_#{survey.id}"}
+    %td= check_box_tag "surveys_ids[]", survey.id
     %td= link_to_with_icon survey, toggle_status_survey_path(survey), remote: true, method: :get, id: "status_#{survey.id}", class: "btn btn-mini"
     %td= survey.name
     %td= survey.user.name

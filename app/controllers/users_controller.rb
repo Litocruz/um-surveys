@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
   respond_to :html, :js
+  respond_to :json, only: [:destroy, :destroy_multiple]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 10)
     respond_with(@users)
   end
 
@@ -41,9 +42,26 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "Usuario eliminado."
-    redirect_to users_url
+    @user=User.find(params[:id])
+     if @user.destroy
+        flash[:success] = "Usuario eliminado."
+      end
+      respond_with(@user)
+    
+    #redirect_to users_url
+  end
+
+  def destroy_multiple
+    @users=User.destroy_all(id: params[:users_ids])
+    if @users == []
+      flash[:error] = "No se seleccionaron usuarios"
+    else
+      flash[:success] = "Usuarios Eliminados"
+    end
+    respond_with do |format|
+      format.html { redirect_to users_path }
+      format.json { head :no_content }
+    end
   end
 
   private

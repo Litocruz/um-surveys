@@ -1,11 +1,12 @@
 - if user.admin?
 	%tr.success
 - else
-	%tr
+	%tr{id: "user_#{user.id}"}
+		%td= check_box_tag "users_ids[]", user.id
 		%td= link_to user.name, user
 		%td= human_boolean(user.admin)
 		%td= user.created_at
 		%td
 			= if current_user.admin? && !current_user?(user)
-				= link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(user), :class => 'btn btn-mini'	
-				- link_to t('.delete', :default => t("helpers.links.delete")), user, method: :delete, class: "btn btn-mini btn-danger", data: { confirm: "Esta seguro?" }
+				= link_to glyph(:pencil), edit_user_path(user), :class => 'btn btn-mini', title: "editar Usuario"	
+				- link_to glyph(:trash, :white), user, data: {confirm: '¿Esta seguro?'}, method: :delete, remote: true, class: 'btn btn-danger btn-mini', title: "eliminar"

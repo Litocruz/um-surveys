@@ -23,7 +23,19 @@
 //= require jquery-tablesorter
 //= require jquery.sortable
 //= require jquery.ui.all
-
+$(function(){
+$('#selectAll').click(function() {
+   if(this.checked) {
+       $(':checkbox').each(function() {
+           this.checked = true;                        
+       });
+   } else {
+      $(':checkbox').each(function() {
+           this.checked = false;                        
+       });
+   } 
+});
+});
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
@@ -191,7 +203,12 @@ $(function() {
   $("#questionTable").tablesorter({ 
      headers: { 
           // assign the secound column (we start counting zero) 
-          4: { 
+          0: { 
+              // disable it by setting the property sorter to false 
+              sorter: false,
+              filter: false
+          },
+          5: { 
               // disable it by setting the property sorter to false 
               sorter: false,
               filter: false
@@ -206,7 +223,12 @@ $(function() {
             sorter: false,
             filter: false
         },
-        5: { 
+        1: { 
+            // disable it by setting the property sorter to false 
+            sorter: false,
+            filter: false
+        },
+        6: { 
             // disable it by setting the property sorter to false 
             sorter: false,
             filter: false
@@ -218,20 +240,10 @@ $(function() {
           // assign the secound column (we start counting zero) 
           0: { 
               // disable it by setting the property sorter to false 
-              sorter: true,
-              filter: true
+              sorter: false,
+              filter: false
           },
-          1: { 
-              // disable it by setting the property sorter to false 
-              sorter: true,
-              filter: true
-          },
-          2: { 
-              // disable it by setting the property sorter to false 
-              sorter: true,
-              filter: true
-          },
-          3: { 
+          4: { 
               // disable it by setting the property sorter to false 
               sorter: false,
               filter: false

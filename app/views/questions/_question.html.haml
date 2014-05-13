@@ -1,7 +1,7 @@
 #sortable	
 	- @questions.each do |question|
 		%tr{id: "question_#{question.id}", class: "item #{question.validation_rules[:presence] == "1" ? 'label-survey-red' : 'label-survey'}", data: {item_id: "#{question.id}"}}
-			//td=# question.position
+			%td= check_box_tag "questions_ids[]", question.id
 			%td= question.title
 			%td= question.type.split('::').last
 			%td= link_to question.question_text.truncate(90), [:edit, question.survey, question]

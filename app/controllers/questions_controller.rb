@@ -50,6 +50,19 @@
       end
       respond_with(@question, location: index_location)
     end
+
+    def destroy_multiple
+      @questions=Question.destroy_all(id: params[:questions_ids])
+      if @questions == []
+        flash[:error] = "No se seleccionaron preguntas"
+      else
+        flash[:success] = "Preguntas Eliminadas"
+      end
+      respond_with do |format|
+        format.html { redirect_to survey_questions_path }
+        format.json { head :no_content }
+      end
+    end
   
     def reorder
       @question = @survey.questions.find(params[:id])

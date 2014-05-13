@@ -1,14 +1,22 @@
 - model_class = User
 - provide(:header, "USUARIOS")
-= will_paginate 
+= will_paginate
 = #@users is a list of User objects; moreover, when called with a collection of users, Rails automatically iterates through them and renders each one
-%table.sortable#userTable
-	%thead
-		%tr
-			%th= model_class.human_attribute_name(:name)
-			%th= model_class.human_attribute_name(:admin)
-			%th= model_class.human_attribute_name(:created_at)
-			%th=t '.actions', :default => t("helpers.actions")
-	%tbody
-		= render @users 
-= will_paginate  
+= form_tag destroy_multiple_users_path, method: :delete do
+	%table.sortable#userTable
+		%thead
+			%tr
+				%th
+				%th= model_class.human_attribute_name(:name)
+				%th= model_class.human_attribute_name(:admin)
+				%th= model_class.human_attribute_name(:created_at)
+				%th=t '.actions', :default => t("helpers.actions")
+		%tbody
+			= render partial: "user", collection: @users
+	= button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección") do
+		%i.icon-trash.icon-white
+		= check_box_tag :selectAll
+	= link_to( new_user_path, class: 'btn btn-primary') do
+		%i.icon-star.icon-white
+		Nuevo Usuario
+= will_paginate

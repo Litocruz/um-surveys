@@ -1,18 +1,24 @@
 - model_class = Survey
 - provide(:header, "ENCUESTAS")
-= hidden_field_tag :direction, params[:direction]
-= hidden_field_tag :sort, params[:sort]
 = will_paginate @surveys
-%table.sortable#surveyTable
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:status)
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:usuario)
-      %th= model_class.human_attribute_name(:scope)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    = render partial: "survey" #= render partial: "survey", collection: @surveys
+= form_tag destroy_multiple_surveys_path, method: :delete  do
+  %table.sortable#surveyTable
+    %thead
+      %tr
+        %th
+        %th= model_class.human_attribute_name(:status)
+        %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:usuario)
+        %th= model_class.human_attribute_name(:scope)
+        %th= model_class.human_attribute_name(:created_at)
+        %th=t '.actions', :default => t("helpers.actions")
+    %tbody
+      = render partial: "survey" #= render partial: "survey", collection: @surveys
+  = button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección") do
+    %i.icon-trash.icon-white
+    = check_box_tag :selectAll
+  = link_to( new_survey_path, class: 'btn btn-primary') do
+    %i.icon-star.icon-white
+    Nueva Encuesta
 = will_paginate @surveys
-= link_to t('.new', :default => t("helpers.links.Nueva Encuesta")), new_survey_path, :class => 'btn btn-primary'
+
