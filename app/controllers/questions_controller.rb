@@ -8,8 +8,9 @@
     
 
     def index
-      @questions = @survey.questions.rank(:position).paginate(:page => params[:page], :per_page => 10) 
-      respond_with(@questions)
+      @questions = @survey.questions.rank(:position).paginate(:page => params[:page], :per_page => 10)
+      @survey_name = @survey.name 
+      respond_with(@questions,@survey_name)
     end
 
     def new

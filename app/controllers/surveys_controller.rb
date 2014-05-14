@@ -73,15 +73,28 @@
       #Rails.logger.debug "@questions_old: #{@questions_old.inspect}"
       @survey=@survey_old.dup
       Rails.logger.debug "@survey_old: #{@survey_old.inspect}"
-      
+      @questions = @survey_old.questions.all.dup
       Rails.logger.debug "@survey: #{@survey.inspect}"
-      if @survey.save
-        #@questions = @survey.@questions_old.build.save!
+      Rails.logger.debug "@questions: #{@questions.inspect}"
+      if @survey.save!
+=begin        
+        Rails.logger.debug "@questions: #{@questions.inspect}"
+        if @questions != nil
+          @questions.each do |e|
+            e.survey_id = @survey.id
+            if e.save
+              Rails.logger.debug "e: #{e.inspect}"
+            end
+          end
+        end
+=end
         #Rails.logger.debug "@questions: #{@questions.inspect}"
         flash.now[:success] = "Encuesta clonada"
+        respond_with(@survey_old)
+      else
+        flash.now[:error] = "Se produjo un error"
       end
-      respond_with(@survey_old)   
-
+      #Rails.logger.debug "@survey.save: #{@survey.save.inspect}"
     end
 
     def results

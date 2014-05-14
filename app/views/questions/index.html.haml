@@ -1,5 +1,5 @@
 - model_class = Question
-- provide(:header, "PREGUNTAS")
+- provide(:header, "PREGUNTAS de #{@survey_name}")
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 = will_paginate @questions

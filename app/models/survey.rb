@@ -4,7 +4,8 @@ class Survey < ActiveRecord::Base
   validates :name, :presence => true
   validates :code, :presence => true
   has_many :participants, dependent: :destroy
-  accepts_nested_attributes_for :participants
+  accepts_nested_attributes_for :participants, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :questions, :allow_destroy => true
 	SCOPE = {
    :publica             => 0,
    :privada             => 1 
