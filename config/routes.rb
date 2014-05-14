@@ -14,10 +14,12 @@ UmSurveys::Application.routes.draw do
   resources :surveys do
     get 'results', on: :member
     get 'toggle_status', on: :member
+    get 'clone_survey', on: :member
     collection {delete :destroy_multiple}
     resources :questions do
       collection {post :reorder}
       collection {delete :destroy_multiple}
+      get 'clone_question', on: :member
     end
     resources :answer_groups, only: [:new, :create]
     resources :participants do

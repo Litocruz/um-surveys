@@ -228,7 +228,7 @@ $(function() {
             sorter: false,
             filter: false
         },
-        6: { 
+        7: { 
             // disable it by setting the property sorter to false 
             sorter: false,
             filter: false

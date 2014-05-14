@@ -3,7 +3,7 @@
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :destroy_multiple]
     #before_action :correct_user
     respond_to :html, :js
-    respond_to :json, only: [:results, :destroy]
+    respond_to :json, only: [:results, :destroy, :clone_survey]
     respond_to :csv, only: [:results]
     respond_to :xls, only: [:results]
 
@@ -66,6 +66,24 @@
       end
     end
 
+    def clone_survey
+      @survey_old = Survey.find(params[:id])
+      #@survey_old = @survey_old.questions.build
+      #@questions_old = @survey_old.questions.build
+      #Rails.logger.debug "@questions_old: #{@questions_old.inspect}"
+      @survey=@survey_old.dup
+      Rails.logger.debug "@survey_old: #{@survey_old.inspect}"
+      
+      Rails.logger.debug "@survey: #{@survey.inspect}"
+      if @survey.save
+        #@questions = @survey.@questions_old.build.save!
+        #Rails.logger.debug "@questions: #{@questions.inspect}"
+        flash.now[:success] = "Encuesta clonada"
+      end
+      respond_with(@survey_old)   
+
+    end
+
     def results
       @survey = Survey.find(params[:id])
       @survey_results = SurveyResults.new(survey: @survey).extract
@@ -77,14 +95,6 @@
       @survey.toggle!(:status)  
       #render nothing: true 
       respond_with(@survey, location: index_location)
-    end
-
-    def edit_multiple
-    
-    end
-      
-    def update_multiple
-       
     end
 
     private

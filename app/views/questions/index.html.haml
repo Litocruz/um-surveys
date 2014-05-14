@@ -15,9 +15,9 @@
 				%th=t '.actions', :default => t("helpers.actiones")
 		%tbody
 			= render partial: "question"
-	= button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección") do
+	= check_box_tag :selectAll
+	= button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección", data: {confirm: '¿Esta seguro?'}) do
 		%i.icon-trash.icon-white
-		= check_box_tag :selectAll
 	= link_to new_survey_question_path, class:'btn btn-primary' do
 		%i.icon-star.icon-white
 		Nueva Pregunta

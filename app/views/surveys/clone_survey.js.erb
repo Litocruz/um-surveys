@@ -1,0 +1,20 @@
+/*('#surveyTable tr:last').append('<tr><td>bla</td</tr>').fadeIn();*/
+
+
+$("#surveyTable").each(function () {
+   
+    var tds = '<tr>';
+    $("#<%= dom_id(@survey_old) %>").each(function () {
+        tds += $(this).html();
+    });
+    tds += '</tr>';
+    if ($('tbody', this).length > 0) {
+        $('tbody', this).append(tds).effect("highlight", {}, 2000);
+    } else {
+        $(this).append(tds).effect("highlight", {}, 2000);
+    }
+});
+
+/*$("#<%= dom_id(@survey) %>").fadeIn()*/
+$(".alert").html("<%= escape_javascript(flash[:success])%>");
+$(".alert").show(300);
