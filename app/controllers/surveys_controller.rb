@@ -68,33 +68,31 @@
 
     def clone_survey
       @survey_old = Survey.find(params[:id])
-      #@survey_old = @survey_old.questions.build
-      #@questions_old = @survey_old.questions.build
-      #Rails.logger.debug "@questions_old: #{@questions_old.inspect}"
+
+      questions_old = @survey_old.questions
+      questions = questions_old.dup
+
       @survey=@survey_old.dup
-      Rails.logger.debug "@survey_old: #{@survey_old.inspect}"
-      @questions = @survey_old.questions.all.dup
-      Rails.logger.debug "@survey: #{@survey.inspect}"
-      Rails.logger.debug "@questions: #{@questions.inspect}"
-      if @survey.save!
-=begin        
-        Rails.logger.debug "@questions: #{@questions.inspect}"
-        if @questions != nil
-          @questions.each do |e|
-            e.survey_id = @survey.id
-            if e.save
-              Rails.logger.debug "e: #{e.inspect}"
-            end
+
+      if @survey.save     
+        if questions != nil
+          questions.each do |e|         
+            ques = @survey.questions.build
+            ques.type = e.type
+            ques.question_text = e.question_text
+            ques.position = e.position
+            ques.answer_options = e.answer_options
+            ques.validation_rules = e.validation_rules
+            ques.title = e.title
+            ques.description = e.description
+            flash.now[:error] = "Se produjo un error en clonacion de preguntas" unless !ques.save
           end
         end
-=end
-        #Rails.logger.debug "@questions: #{@questions.inspect}"
         flash.now[:success] = "Encuesta clonada"
         respond_with(@survey_old)
       else
-        flash.now[:error] = "Se produjo un error"
+        flash.now[:error] = "Se produjo un error en clonacion de Encuesta"
       end
-      #Rails.logger.debug "@survey.save: #{@survey.save.inspect}"
     end
 
     def results

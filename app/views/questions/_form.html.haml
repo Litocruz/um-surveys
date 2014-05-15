@@ -23,5 +23,8 @@
 						= f.input :answer_less_than_or_equal_to , label: "Menor o Igual a"
 	.form-actions
 		= f.button :submit,  :class => 'btn-primary'
+		%span.btn.btn-success.btn-mini
+			= f.button :submit,  class: 'btn-success', value: "Crear y Nueva", name: "commit_new"
+			%i.icon-plus.icon-white
 		= link_to t('.cancel', :default => t("helpers.links.cancelar")), survey_questions_path, :class => 'btn'
 	

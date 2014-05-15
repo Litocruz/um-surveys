@@ -19,7 +19,6 @@ UmSurveys::Application.routes.draw do
     resources :questions do
       collection {post :reorder}
       collection {delete :destroy_multiple}
-      get 'clone_question', on: :member
     end
     resources :answer_groups, only: [:new, :create]
     resources :participants do

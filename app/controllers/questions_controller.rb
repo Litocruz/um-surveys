@@ -22,9 +22,10 @@
       form_params = params[:question].merge(:survey => @survey)
       @question = QuestionForm.new(form_params)
       
-      #Rails.logger.debug 'DEBUG: question.save ' + @question.save
       if @question.save
-        respond_with(@question, location: index_location)
+        Rails.logger.debug "index_location: #{index_location}"
+        Rails.logger.debug "params[:commit_new]: #{params[:commit_new]}"
+        respond_with(@question, location: params[:commit_new].blank? ? index_location : new_survey_question_url )
         flash[:success] = "Pregunta Creada"
       else
         respond_with(@question, location: index_location)
@@ -80,6 +81,19 @@
 
       # this action will be called via ajax
       render nothing: true
+    end
+
+    def clone_question
+      @question_old = Question.find(params[:id])
+
+      @question=@question_old.dup
+
+      if @question.save     
+        flash.now[:success] = "Pregunta clonada"
+        respond_with(@question_old)
+      else
+        flash.now[:error] = "Se produjo un error en clonacion de la Pregunta"
+      end
     end
 
     private
