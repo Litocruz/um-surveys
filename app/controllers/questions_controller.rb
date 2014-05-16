@@ -1,7 +1,7 @@
   class QuestionsController < ApplicationController
     #before_filter :authenticate_administrator!
     before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-    respond_to :html, :js
+    respond_to :html, :js, :json
 
     before_filter :find_survey!, :only => [:index, :new, :create, :reorder, :edit, :update, :destroy]
     before_filter :find_question!, :only => [:edit, :update, :destroy]
@@ -23,8 +23,6 @@
       @question = QuestionForm.new(form_params)
       
       if @question.save
-        Rails.logger.debug "index_location: #{index_location}"
-        Rails.logger.debug "params[:commit_new]: #{params[:commit_new]}"
         respond_with(@question, location: params[:commit_new].blank? ? index_location : new_survey_question_url )
         flash[:success] = "Pregunta Creada"
       else
@@ -38,12 +36,18 @@
     end
 
     def update
-      form_params = params[:question].merge(:question => @question)
+      unless params[:commit_copy].blank?
+        form_params = params[:question].merge(:survey => @survey)
+      else
+        form_params = params[:question].merge(:question => @question)
+      end    
       @question = QuestionForm.new(form_params)
       if @question.save
-        flash[:success] = "Pregunta Actualizada"
+        flash[:success] = params[:commit_copy].blank? ? "Pregunta Actualizada" : "Pregunta Clonada"
+      else
+        flash[:error] = "Se produjo un error"
       end
-      respond_with(@question, location: index_location)
+      respond_with(@question, location: params[:commit_new].blank? ? index_location : new_survey_question_url )
     end
 
     def destroy
@@ -53,8 +57,9 @@
       respond_with(@question, location: index_location)
     end
 
-    def destroy_multiple
-      @questions=Question.destroy_all(id: params[:questions_ids])
+    def destroy_or_presence_multiple
+      Rails.logger.debug "params #{params.inspect}"
+      params[:presence].blank? ? @questions=Question.destroy_all(id: params[:questions_ids]) : @questions=Question.update_all(validation_rules: {presence: '1'})
       if @questions == []
         flash[:error] = "No se seleccionaron preguntas"
       else

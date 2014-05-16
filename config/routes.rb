@@ -18,7 +18,8 @@ UmSurveys::Application.routes.draw do
     collection {delete :destroy_multiple}
     resources :questions do
       collection {post :reorder}
-      collection {delete :destroy_multiple}
+      collection {delete :destroy_or_presence_multiple}
+      collection {post :destroy_or_presence_multiple}
     end
     resources :answer_groups, only: [:new, :create]
     resources :participants do
