@@ -15,4 +15,7 @@
 			.form-actions
 				= f.button :submit, "Responder", :class => 'btn-primary'
 				= f.hidden_field "url_token", value: params[:url_token]
-				= link_to t('.cancel', :default => t("helpers.links.cancelar")), root_path, :class => 'btn'
+				- if signed_in?
+					= link_to :back, :class => 'btn'do
+						%i.icon-chevron-left
+						Atras		

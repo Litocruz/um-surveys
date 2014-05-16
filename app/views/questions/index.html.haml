@@ -1,9 +1,25 @@
 - model_class = Question
-- provide(:header, "PREGUNTAS de #{@survey_name}")
+- provide(:header, "PREGUNTAS de #{@survey.name}")
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 = will_paginate @questions
 = form_tag destroy_or_presence_multiple_survey_questions_path  do
+	= check_box_tag :selectAll
+	= button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección", method: :delete, data: {confirm: '¿Esta seguro?'}) do
+		%i.icon-trash.icon-white
+	= button_tag(type: "submit", class: "btn btn-danger", title: "Hacer preguntas obligatorias", name: 'presence', value: 'obligatorio', id: "presence") do
+		%i.icon-asterisk.icon-white
+		Hacer Oligatoria
+	= link_to new_survey_question_path, class:'btn btn-primary' do
+		%i.icon-star.icon-white
+		Nueva Pregunta
+	= link_to new_survey_answer_group_path(@survey), class:'btn btn-primary' do
+		%i.icon-play.icon-white
+		Ver Encuesta
+	= link_to surveys_path, class: 'btn' do
+		%i.icon-chevron-left
+		Volver
+	%p
 	%table.tablesorter#questionTable{:data => {update_url:reorder_survey_questions_path}}
 		%thead
 			%tr
@@ -15,16 +31,18 @@
 				%th=t '.actions', :default => t("helpers.actiones")
 		%tbody
 			= render partial: "question"
-	= check_box_tag :selectAll
+	= check_box_tag :selectAll2
 	= button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección", method: :delete, data: {confirm: '¿Esta seguro?'}) do
 		%i.icon-trash.icon-white
+	= button_tag(type: "submit", class: "btn btn-danger", title: "Hacer preguntas obligatorias", name: 'presence', value: 'obligatorio', id: "presence") do
+		%i.icon-asterisk.icon-white
+		Hacer Oligatoria
 	= link_to new_survey_question_path, class:'btn btn-primary' do
 		%i.icon-star.icon-white
 		Nueva Pregunta
-	= button_tag(type: "submit", class: "btn btn-danger", title: "Hacer preguntas obligatorias", name: 'presence', value: 'obligatorio', id: "presence") do
-		%i.icon-trash.icon-white
-		%i.icon-star-empty
-		Hacer Oligatoria
+	= link_to new_survey_answer_group_path(@survey), class:'btn btn-primary' do
+		%i.icon-play.icon-white
+		Ver Encuesta
 	= link_to surveys_path, class: 'btn' do
 		%i.icon-chevron-left
 		Volver		

@@ -6,29 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="<%= root_path %>">INICIO <i class="icon-home"></i> </a>
       <ul class="brand">
             <b><%= content_for?(:header) ? yield(:header) : " " %></b>
       </ul>
-       <ul class="nav pull-right">
-          <% if signed_in? %>
-            <div class="btn-group">
-              <a class="btn " href="#"><i class="icon-user"></i><%= current_user.name %></a>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to glyph(:"eye-open") + " Perfil", current_user %></li>
-                <li><%= link_to glyph(:pencil) + " Actualizar Perfil", edit_user_path(current_user) %></li>
-                <li></li>
-                <li class="divider"></li>
-                <li><%= link_to glyph(:off) + " Salir", signout_path, method: "delete" %></li>
-              </ul>
-            </div>
-          <% else %>  
-            <li><%= link_to "Ingresar", signin_path  %></li>
-          <% end %>
-        </ul>
+      <ul class="nav pull-right">
 
-        <ul class="nav pull-right">
+          <li><a href="<%= root_path %>"><i class="icon-home"></i> INICIO </a></li>
           <% if signed_in? %>
             <li><%= link_to "Encuestas", surveys_path  %></li>
             <% if signed_in? && current_user.admin? %>
@@ -42,6 +25,24 @@
                   </ul>
               </li>
             <% end %>
+          <% end %>
+        </ul>
+       <ul class="nav pull-right">
+          <% if signed_in? %>
+            <div class="btn-group">
+              <a class="btn " href="#"><i class="icon-user"></i><%= current_user.name %></a>
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to glyph(:"eye-open") + " Perfil", current_user %></li>
+                <li><%= link_to glyph(:pencil) + " Actualizar Perfil", edit_user_path(current_user) %></li>
+                <li></li>
+                <li class="divider"></li>
+                <li><%= link_to glyph(:off) + " Salir", signout_path, method: "delete" %></li>
+              </ul>
+
+            </div>
+          <% else %> 
+            <li><%= link_to "Ingresar", signin_path  %></li>
           <% end %>
         </ul>
     </div>

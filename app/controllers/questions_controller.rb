@@ -9,8 +9,7 @@
 
     def index
       @questions = @survey.questions.rank(:position).paginate(:page => params[:page], :per_page => 10)
-      @survey_name = @survey.name 
-      respond_with(@questions,@survey_name)
+      respond_with(@questions,@survey)
     end
 
     def new
@@ -59,7 +58,7 @@
 
     def destroy_or_presence_multiple
       Rails.logger.debug "params #{params.inspect}"
-      params[:presence].blank? ? @questions=Question.destroy_all(id: params[:questions_ids]) : @questions=Question.update_all(validation_rules: {presence: '1'})
+      params[:questions_ids].blank? ? @questions=Question.destroy_all(id: params[:questions_ids]) : @questions=Question.where(id: params[:questions_ids]).update_all(validation_rules: "--- \n :presence: '1'" )
       if @questions == []
         flash[:error] = "No se seleccionaron preguntas"
       else

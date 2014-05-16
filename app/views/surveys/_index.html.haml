@@ -2,6 +2,13 @@
 - provide(:header, "ENCUESTAS")
 = will_paginate @surveys
 = form_tag destroy_multiple_surveys_path, method: :delete  do
+  = check_box_tag :selectAll
+  = button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección", data: {confirm: '¿Esta seguro?'}) do
+    %i.icon-trash.icon-white
+  = link_to( new_survey_path, class: 'btn btn-primary') do
+    %i.icon-star.icon-white
+    Nueva Encuesta
+  %p
   %table.sortable#surveyTable
     %thead
       %tr
@@ -15,7 +22,7 @@
         %th=t '.actions', :default => t("helpers.actions")
     %tbody
       = render partial: "survey" #= render partial: "survey", collection: @surveys
-  = check_box_tag :selectAll
+  = check_box_tag :selectAll2
   = button_tag(type: "submit", class: "btn btn-danger", title: "Eliminar selección", data: {confirm: '¿Esta seguro?'}) do
     %i.icon-trash.icon-white
   = link_to( new_survey_path, class: 'btn btn-primary') do

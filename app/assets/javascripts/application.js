@@ -36,6 +36,19 @@ $('#selectAll').click(function() {
    } 
 });
 });
+$(function(){
+$('#selectAll2').click(function() {
+   if(this.checked) {
+       $(':checkbox').each(function() {
+           this.checked = true;                        
+       });
+   } else {
+      $(':checkbox').each(function() {
+           this.checked = false;                        
+       });
+   } 
+});
+});
 
 function show_confirm_modal(path, question){
     $('#confirm-modal #question').text(question);	
